@@ -1,0 +1,101 @@
+name: Scheduled Production Cypress Testing
+
+on:
+  schedule:
+    - cron: "0 5 * * 1"
+
+  workflow_dispatch:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+  ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+  ALGOLIA_INDEX: ${{ secrets.ALGOLIA_INDEX }}
+  AWS_USER_POOL_ID: ${{ secrets.AWS_USER_POOL_ID }}
+  AWS_USER_POOL_WEB_CLIENT_ID: ${{ secrets.AWS_USER_POOL_WEB_CLIENT_ID }}
+  BIOLUCIDA_PASSWORD: ${{ secrets.BIOLUCIDA_PASSWORD }}
+  BIOLUCIDA_USERNAME: ${{ secrets.BIOLUCIDA_USERNAME }}
+  BITLY_ACCESS_TOKEN: ${{ secrets.BITLY_ACCESS_TOKEN }}
+  BLACKFYNN_API_SECRET: ${{ secrets.BLACKFYNN_API_SECRET }}
+  BLACKFYNN_API_TOKEN: ${{ secrets.BLACKFYNN_API_TOKEN }}
+  BLACKFYNN_CONCEPTS_API_HOST: ${{ secrets.BLACKFYNN_CONCEPTS_API_HOST }}
+  CTF_API_HOST: ${{ secrets.CTF_API_HOST }}
+  CTF_CDA_ACCESS_TOKEN: ${{ secrets.CTF_CDA_ACCESS_TOKEN }}
+  CTF_SPACE_ID: ${{ secrets.CTF_SPACE_ID }}
+  DEPLOY_ENV: ${{ secrets.DEPLOY_ENV }}
+  DISABLE_REDIRECT_SSL: ${{ secrets.DISABLE_REDIRECT_SSL }}
+  FLATMAP_API_HOST: ${{ secrets.FLATMAP_API_HOST }}
+  LOGIN_API_URL: ${{ secrets.LOGIN_API_URL }}
+  NODE_ENV: ${{ secrets.NODE_ENV }}
+  NPM_CONFIG_PRODUCTION: ${{ secrets.NPM_CONFIG_PRODUCTION }}
+  OSPARC_HOST: ${{ secrets.OSPARC_HOST }}
+  PORTAL_API_HOST: ${{ secrets.PORTAL_API_HOST }}
+  RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
+  RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
+  SHOW_FUNDING_FACET: ${{ secrets.SHOW_FUNDING_FACET }}
+  SHOW_HIERARCHAL_FACETS: ${{ secrets.SHOW_HIERARCHAL_FACETS }}
+  SHOW_LOGIN_FEATURE: ${{ secrets.SHOW_LOGIN_FEATURE }}
+  SHOW_METRICS: ${{ secrets.SHOW_METRICS }}
+  SHOW_OSPARC_TAB: ${{ secrets.SHOW_OSPARC_TAB }}
+  SHOW_TIMESERIES_VIEWER: ${{ secrets.SHOW_TIMESERIES_VIEWER }}
+  SPARC_PORTAL_USER_ID: ${{ secrets.SPARC_PORTAL_USER_ID }}
+  SPARC_PORTAL_USER_SECRET: ${{ secrets.SPARC_PORTAL_USER_SECRET }}
+
+jobs:
+  latest-deployment:
+    runs-on: ubuntu-latest
+
+    outputs:
+      latest-sha: ${{ steps.latest-deployment-sha.outputs.deployment-sha }}
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Get sha of latest deployment in main branch
+        id: latest-deployment-sha
+        uses: go-fjords/get-active-deployment-action@v0.0.3
+        with:
+          environment: sparc-app-prod
+
+      - name: Print latest deployment sha
+        run: echo "${{ steps.latest-deployment-sha.outputs.deployment-sha }}"
+
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    needs: latest-deployment
+
+    outputs:
+      step-outcome: ${{ steps.cypress.outcome }}
+
+    steps:
+      - name: Cleanup pre-installed tools
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.latest-deployment.outputs.latest-sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.17.1
+
+      - name: Schedule Run Testing against Production
+        id: cypress
+        uses: cypress-io/github-action@v6
+        env:
+          ROOT_URL: "https://sparc.science"
+        with:
+          wait-on: ${{ env.ROOT_URL }}
+          record: true
+          tag: Scheduled-Production

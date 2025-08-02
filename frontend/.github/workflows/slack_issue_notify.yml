@@ -1,0 +1,51 @@
+name: Notify Slack on Real Issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.issue.labels.*.name, 'test')"  # Skip test issues
+    steps:
+      - name: Prepare and Send Slack Notification
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_TITLE: ${{ github.event.issue.title || 'No title provided' }}
+          ISSUE_BODY: ${{ github.event.issue.body || 'No description provided' }}
+        run: |
+          # Convert GitHub Markdown headings to Slack-friendly bold text
+          body_for_slack=$(echo "$ISSUE_BODY" \
+            | sed -E ':a;N;$!ba;s/^### (.*)\n/*\1*\n/g' \
+            | sed -E ':a;N;$!ba;s/^## (.*)\n/*\1*\n/g' \
+            | sed -E ':a;N;$!ba;s/^# (.*)\n/*\1*\n/g' \
+            | sed 's/"/\\"/g')
+
+          payload=$(jq -n --arg title "$ISSUE_TITLE" \
+                          --arg url "$ISSUE_URL" \
+                          --arg body "$body_for_slack" \
+          '{
+            blocks: [
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: "*🆕 New GitHub Issue:*\n<\($url)|\($title)>"
+                }
+              },
+              {
+                type: "section",
+                text: {
+                  type: "mrkdwn",
+                  text: "\($body)"
+                }
+              }
+            ]
+          }')
+
+          echo "Slack payload:"
+          echo "$payload"
+
+          curl -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
