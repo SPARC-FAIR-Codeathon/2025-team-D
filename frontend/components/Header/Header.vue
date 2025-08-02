@@ -132,6 +132,11 @@ const links = [
     title: 'share-data',
     displayTitle: 'Submit to SPARC',
     href: '/share-data'
+  },
+  {
+    title: 'register-plugins',
+    displayTitle: 'Register Plugins',
+    href: '/register-plugins'
   }
 ]
 
