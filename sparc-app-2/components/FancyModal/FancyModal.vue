@@ -1,5 +1,5 @@
 <template>
-  <div v-if="visible" class="modal-backdrop" @click.self="close">
+  <div v-if="visible" class="modal-backdrop">
     <div class="modal-container">
       <slot ></slot>
       <button class="modal-close" @click="close">×</button>
@@ -39,8 +39,16 @@ const close = () => emit('close');
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   max-width: 90%;
   width: 65dvw;
+  max-height: 90dvh;
   animation: popUp 0.3s ease;
   font-family: 'Segoe UI', sans-serif;
+  overflow-y: auto;
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE/Edge */
+}
+
+.modal-container::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari */
 }
 
 .modal-close {
