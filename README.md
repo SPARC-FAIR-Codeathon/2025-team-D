@@ -1,6 +1,9 @@
 # SPARC Plugins (sparc-plugins)
 An ecosystem for dynamically integrating accessible feature rich interactive tools into the SPARC portal in accordance with FAIR principles.
 
+Making the SPARC portal more FAIR
+
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url]
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/SPARC-FAIR-Codeathon/2025-team-D.svg)](https://GitHub.com/SPARC-FAIR-Codeathon/2025-team-D/issues?q=is%3Aissue+is%3Aclosed)
@@ -110,16 +113,26 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 - Link with Large Language Models to support more complex queries, for example to help visualise quantities of interest.
 - Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
 - Provide API documentation.
-  
-## Setting up sparc-plugins
 
-### Pre-requisites 
+-->
+
+## Documentation 
+
+### Setting up the sparc-plugins development environment
+
+#### Pre-requisites 
+
+- Container service, for example:
+  -  Docker vX.X or greater; or
+  -  Singularity vX.X or greater
+<!--*
 - [Git](https://git-scm.com/)
 - Python. Tested on:
    - 3.10
-- Operating system. Tested on:
-  - Ubuntu 24.04
-   
+- Operating systems: 
+  - Tested on:
+    - Ubuntu 24.04
+
 ### PyPI
 
 Here is the [link](https://pypi.org/project/sparc-plugins/) to our project on PyPI
@@ -158,13 +171,44 @@ git clone https://github.com/SPARC-FAIR-Codeathon/2025-team-D.git
     pip install -r requirements.txt
     ```
 
-## Using sparc-plugins
+-->
 
-**If you find sparc-plugins useful, please add a GitHub Star to support developments!**
+### Creating plugins
 
-### Running tutorials
+The Jupyter Notebook tutorials below will guide you through creating SPARC portal plugins and how they can be dynamically integrated into the SPARC portal. These tutorials make use of the sparc-plugins development environment, which deploys a local instance of the SPARC portal as described in Section X.
 
-Guided Jupyter Notebook tutorials have been developed describing how to use sparc-plugins in different scenarios:
+1. Building plugins using:
+
+   1. the sparc-plugins development enivronment
+   2. Osparc
+  
+2. Integrating plugins into the SPARC portal
+
+3. Creating plugins that can acess SPARC datasets
+
+4. Reusing (and extending) an existing SPARC portal component as a plugin
+
+5. Creating plugins that link to external services
+
+6. Automatically creating new plugins with generative AI
+
+### Example SPARC portal plugins
+
+Example plugins have been created to demonstrate the capabilites of sparc-plugins. These are located in the "examples" folder of this repository. 
+They also come bundled with the sparc-plugins development environment. Once you have deployed the development environment, you can navigate to the plugins page of the local instance of the SPARC portal that runs within the development environment.
+
+1. Hello world
+
+2. Reusing the existing Human Body visualisation SPARC portal component as a plugin
+
+3. Viewing 3D medical images stored in the SPARC Dataset Structure (SDS)
+
+4. Segmenting 3D medical images using an existing pre-trained state-of-the-art AI annotation tool (NNInteractive)
+
+5. Using a Large Language Model (LLM) chatbot for invesitgating existing datasets in the SPARC portal 
+
+
+<!--*
 
 <table>
 <thead>
