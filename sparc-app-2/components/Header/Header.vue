@@ -135,7 +135,7 @@ const links = [
   },
   {
     title: 'register-plugins',
-    displayTitle: 'Register Plugins',
+    displayTitle: 'Plugins',
     href: '/register-plugins'
   }
 ]
