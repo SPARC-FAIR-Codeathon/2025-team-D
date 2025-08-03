@@ -69,7 +69,7 @@ Adding any of the above functionality requires expert software engineers familia
 
 ## Our solution - sparc-plugins
 
-To address this problem, we have **developed a SPARC Plugins (sparc-plugins)**, an ecosystem for dynamically integrating rich and interactive features into the SPARC portal in accordance with FAIR principles.
+To address this problem, we have **developed SPARC Plugins (sparc-plugins)**, an ecosystem for dynamically integrating rich and interactive features into the SPARC portal in accordance with FAIR principles.
 
 <!--*
 The following features are currently supported: 
@@ -203,7 +203,7 @@ The tutorials below provide a guide for creation of SPARC portal plugins and how
 
 5. Creating plugins that link to external services
 
-6. Automatically creating new plugins with generative AI
+6. Rapidly prototype new plugins with generative AI
 
 #### Deploying your plugin
 
