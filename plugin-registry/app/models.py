@@ -34,7 +34,7 @@ class Plugin(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-    builds = relationship("PluginBuild", back_populates="plugin")
+    builds = relationship("PluginBuild", back_populates="plugin", cascade="all, delete-orphan")
 
 class PluginBuild(Base):
     __tablename__ = "plugin_builds"

@@ -1,3 +1,4 @@
+from pathlib import Path
 import uvicorn
 from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
@@ -75,11 +76,19 @@ async def get_plugin(plugin_id: str, db: Session = Depends(get_db)):
 @app.delete("/plugins/{plugin_id}")
 async def delete_plugin(plugin_id: str, db: Session = Depends(get_db)):
     db_plugin = db.query(Plugin).filter(Plugin.id == plugin_id).first()
-    if db_plugin is None:
-        raise HTTPException(status_code=404, detail="Plugin not found")
-    
-    db.delete(db_plugin)
-    db.commit()
+    if db_plugin is not None :
+        db.delete(db_plugin)
+        db.commit()
+    # delete the record form the metadata.json file
+    metadata_file = Path("/app/portal/public/metadata.json")
+    if metadata_file.exists():
+        with open(metadata_file, "r") as f:
+            metadata = json.load(f)
+        metadata["components"] = [component for component in metadata["components"] if component["id"] != plugin_id]
+        with open(metadata_file, "w") as f:
+            json.dump(metadata, f)
+    else:
+        raise HTTPException(status_code=404, detail="Metadata file not found")
     return {"message": "Plugin deleted successfully"}
 
 @app.post("/plugins/{plugin_id}/build/")
