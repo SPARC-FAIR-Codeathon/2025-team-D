@@ -34,7 +34,8 @@ class PluginBuilder:
   
             clone_dir = Path(tempfile.gettempdir()) / f"plugin_build_{uuid.uuid4().hex[:8]}"
             clone_dir.mkdir(exist_ok=True)
-            
+            if not repo_url.endswith(".git"):
+                repo_url = repo_url + ".git"
             logger.info(f"Cloning repository: {repo_url} to {clone_dir}")
             
             subprocess.run(
