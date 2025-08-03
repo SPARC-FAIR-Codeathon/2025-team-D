@@ -1,6 +1,32 @@
 <template>
   <div class="file-list-container">
-    <h2>Plugins</h2>
+    <button class="file-btn" @click="openModal = true">
+      Register a new plugin
+    </button>
+
+    <FancyModal :visible="openModal" @close="openModal = false">
+      <h2 style="margin-top: 0;">✨ Annotate plugin information</h2>
+      <div class="w-full d-flex justify-center">
+        <form @submit.prevent="submit" style="width:60%">
+          <v-text-field
+            v-model="pluginUrl.value.value"
+            :counter="100"
+            :error-messages="pluginUrl.errorMessage.value"
+            label="Plugin Repository Path"
+          ></v-text-field>
+          <v-text-field
+            v-model="pluginName.value.value"
+            :counter="100"
+            :error-messages="pluginName.errorMessage.value"
+            label="Plugin App Expose Name"
+          ></v-text-field>
+        </form>
+      </div>
+      <div class="w-full d-flex justify-end">
+          <v-btn variant="tonal" color="green-darken-1">Submit</v-btn>
+      </div>
+    </FancyModal>
+
     <ul class="file-list">
       <li v-for="(item, index) in items" :key="index" class="file-item" @click.prevent="handleItemClick(item)">
         <a class="file-link" >
@@ -9,53 +35,13 @@
       </li>
     </ul>
   </div>
-  <!-- <v-btn
-    class="mt-4"
-    color="primary"
-  >ddd</v-btn> -->
-  <!-- <v-card class="mx-auto" max-width="500">
-    <v-toolbar color="pink">
-      <v-btn icon="mdi-menu"></v-btn>
-
-      <v-toolbar-title>Inbox</v-toolbar-title>
-
-      <v-btn icon="mdi-magnify"></v-btn>
-
-      <v-btn icon="mdi-checkbox-marked-circle"></v-btn>
-    </v-toolbar>
-
-    <v-list v-model:selected="selected" select-strategy="leaf">
-      <v-list-item
-        v-for="item, i in items"
-        :key="i"
-        :value="i"
-        active-class="text-pink"
-        class="py-3"
-        @click="()=>handleItemClick(item)"
-      >
-        <v-list-item-title>{{ item.name }}</v-list-item-title>
-
-        <v-list-item-subtitle class="text-high-emphasis">{{ item.description }}</v-list-item-subtitle>
-
-        <template v-slot:append="{ isSelected }">
-          <v-list-item-action class="flex-column align-end">
-            <small class="mb-4 text-high-emphasis opacity-60">explore</small>
-
-            <v-spacer></v-spacer>
-
-            <v-icon v-if="isSelected" color="yellow-darken-3">mdi-star</v-icon>
-
-            <v-icon v-else class="opacity-30">mdi-star-outline</v-icon>
-          </v-list-item-action>
-        </template>
-      </v-list-item>
-    </v-list>
-  </v-card> -->
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, shallowRef } from 'vue'
-import { useRemoteAppStore } from '../../store/remoteStore'
+import { useRemoteAppStore } from '@/store/remoteStore'
+import FancyModal from '@/components/FancyModal/FancyModal.vue'
+import { useField, useForm } from 'vee-validate'
 
 type Item = {
     name: string;
@@ -64,12 +50,35 @@ type Item = {
     description: string;
 }
 
+const openModal = ref(false)
+
 const items = ref<Item[]>([])
 
 const selected = shallowRef([0])
 const remoteAppStore = useRemoteAppStore()
 const router = useRouter()
 
+
+const { handleSubmit, handleReset } = useForm({
+    validationSchema: {
+      pluginUrl (value: string) {
+        if (typeof value === 'string') return true
+
+        return 'You need to provide a valid repository URL.'
+      },
+      pluginName (value:string) {
+        if (typeof value === 'string') return true
+
+        return 'Please provide a valid plugin name.'
+      }
+    },
+  })
+  const pluginUrl = useField('pluginUrl')
+  const pluginName = useField('pluginName')
+
+  const submit = handleSubmit(values => {
+    alert(JSON.stringify(values, null, 2))
+  })
 
 onMounted(async () => {
   try {
@@ -95,7 +104,7 @@ const handleItemClick = (item: Item) => {
 
 <style scoped>
 .file-list-container {
-  max-width: 600px;
+  max-width: 60%;
   margin: 40px auto;
   padding: 24px;
   background: #f9f9fb;
@@ -141,5 +150,33 @@ const handleItemClick = (item: Item) => {
 
 .file-link:hover {
   text-decoration: underline;
+}
+
+.file-btn {
+  margin-bottom: 12px;
+  padding: 14px 20px;
+  background: linear-gradient(to right, #ffffff, #f9fafb);
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.file-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to right, #f0f9ff, #e0f2fe);
+  border-color: #bae6fd;
+  color: #0c4a6e;
+}
+
+.file-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 </style>
