@@ -1,5 +1,5 @@
 # SPARC Plugins (sparc-plugins)
-An ecosystem for dynamically integrating accessible feature rich interactive tools into the SPARC portal in accordance with FAIR principles.
+An ecosystem for dynamically integrating feature rich interactive tools into the SPARC portal in accordance with FAIR principles.
 
 Making the SPARC portal more FAIR
 
@@ -28,14 +28,13 @@ Making the SPARC portal more FAIR
 * [About](#about)
 * [Introduction](#introduction)
 * [The problem](#the-problem)
-* [Vision and benefits](#vision-and-benefits)
 * [Our solution - sparc-plugins](#our-solution---sparc-plugins)
+* [Benefits](#benefits)
 * [Designed to enable FAIRness](#designed-to-enable-fairness)
-* [Future developments](#future-developments)
-* [Setting up sparc-plugins](#setting-up-sparc-plugins)
-* [Using sparc-plugins](#using-sparc-plugins)
+* [Documentation](#documentation)
 * [Reporting issues](#reporting-issues)
 * [Contributing](#contributing)
+* [Future developments](#future-developments)
 * [Cite us](#cite-us)
 * [License](#license)
 * [Team](#team)
@@ -44,17 +43,28 @@ Making the SPARC portal more FAIR
 ## About
 This is the repository of Team sparc-plugins (Team D) of the 2025 SPARC Codeathon. Click [here](https://sparc.science/help/2025-sparc-fair-codeathon) to find out more about the SPARC Codeathon 2025. Check out the [Team Section](#team) of this page to find out more about our team members.
 
-Please see the [Acknowledgements](#acknowledgements) section of this readme for a list of tools that have been used in this project.
+No work was done on this codeathon project prior to the start of the codeathon.
 
 ## Introduction
 The NIH Common Fund program on **[Stimulating Peripheral Activity to Relieve Conditions (SPARC)](https://commonfund.nih.gov/sparc) focuses on understanding peripheral nerves** (nerves that connect the brain and spinal cord to the rest of the body), **how their electrical signals control internal organ function**, and **how therapeutic devices could be developed to modulate electrical activity in nerves to improve organ function**. This may provide a potentially powerful way to treat a diverse set of common conditions and diseases such hypertension, heart failure, gastrointestinal disorders, and more. 60 research groups spanning 90 institutions and companies contribute to SPARC and work across over 15 organs and systems in 8 species.
 
-**The [SPARC Portal](http://sparc.science/) provides a single user-facing online interface to resources** that can be shared, cited, visualized, computed, and used for virtual experimentation. A **key offering** of the portal is the **collection of well-curated datasets in a standardised format, including anatomical and computational models** that are being generated both SPARC-funded researchers and the international scientific community. These datasets can be found under the "[Find Data](https://sparc.science/data?type=dataset)" section of the SPARC Portal. Information regarding [how to navigate a SPARC dataset](https://docs.sparc.science/docs/navigating-a-sparc-dataset) and [how a dataset is formatted](https://docs.sparc.science/docs/overview-of-sparc-dataset-format) can be found on the SPARC Portal.
+**The [SPARC Portal](http://sparc.science/) provides a single user-facing online interface to resources** that can be shared, cited, visualized, computed, and used for virtual experimentation. **key offerings** of the portal include:
+- the **collection of well-curated datasets in a standardised format, including anatomical and computational models** that are being generated both SPARC-funded researchers and the international scientific community. These datasets can be found under the "[Find Data](https://sparc.science/data?type=dataset)" section of the SPARC Portal. Information regarding [how to navigate a SPARC dataset](https://docs.sparc.science/docs/navigating-a-sparc-dataset) and [how a dataset is formatted](https://docs.sparc.science/docs/overview-of-sparc-dataset-format) can be found on the SPARC Portal.
+- web tools integrated within the portal for exploring SPARC knowledge bases
+  - Human body viewers
+  - Flat maps
+  - Functional Connective maps
+  - Datasets
+<!--*
 
 **The scientific community is developing new tools and models** to process and understand measurements in these datasets to generate new results, outcomes, and knowledge. These tools and models are often applied in a series of steps to create workflows whose outputs provide quantities of interest. For example, a user may be creating a workflow that inputs medical images of the brain (measurement) and segments brain tissue from these images (tool) that can output brain volume (quantity of interest). Another user maybe interest in a workflow that inputs electrode measurements from the surface of the heart to personalise a computational model of cardiac electrophysiology to quantify activation patterns. These workflows may require multiple intermediate tools and models to generate the final output of interest. 
 
-<!--*
+-->
+
 ## The problem
+No ability to customise portal functionality or add new functionality to interact with sparc datasets or knowledge base.
+
+<!--*
 Despite users having a general idea of the quantities of interest in their investigations (e.g. outputs of specific models or tools they are developing), they typically need to assemble workflows manually, often guessing what inputs and intermediate measurements, models, and tools may be needed.
 
 There is **currently no option for users to**:
@@ -80,7 +90,10 @@ Providing these capabilites would:
 - support reuse of assembled workflows by the community for generating scientific advances.
 - help the community identify gaps in our knowledge and capabilites to support and help prioritise future research developments
 
+-->
 ## Our solution - sparc-plugins
+
+<!--*
 To address this problem and support our vision, we have **developed a Python module called SPARC Assemble (sparc-plugins)** that can be used to find, access, and automatically assemble models and tools into workflows to process SPARC datasets in accordance with FAIR principles. 
 
 The following features are currently supported: 
@@ -97,7 +110,11 @@ The following features are currently supported:
 - Provides a **natural language inteface** to make it easy for users to specify their quantity of interest
 - Provides a series of tutorials to demonstrate the functionality of sparc-plugins
 - Reuses existing SPARC resources and tools including [sparc-me](https://github.com/SPARC-FAIR-Codeathon/sparc-me), [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow), and the sparc-python-client.
-  
+
+-->
+## Benefits
+<!--*
+
 ## Designed to enable FAIRness
 We have assessed the FAIRness of our sparc-plugins against the FAIR Principles established for research software. The details of this assemsement is available in the codeathon google drive for team 2.
 
@@ -105,14 +122,6 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 - The Common Workflow Language (CWL) - is an open standard and specification used in the field of bioinformatics and scientific computing to describe and execute tools and workflows. CWL provides a way to define and share complex computational tasks and data processing pipelines in a portable and platform-independent manner. It uses a JSON-based format to describe input data, processing steps, and output data, allowing researchers to collaborate and share reproducible analyses across different computing environments. CWL aims to enhance the ease of defining, sharing, and executing computational workflows, particularly in the context of data-intensive scientific research.
 - EDAM ontology - EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within bioscientific data analysis and data management (including computational biology, bioinformatics, and bioimage informatics). EDAM includes topics, operations, types of data and data identifiers, and data formats, relevant in data analysis and data management in life sciences.
 - SPARC Dataset Structure
-
-## Future developments
-- Standardise the description of intputs and outputs of these models and tools
-- Integrate our knowledge graph with other knowledgebases including the SPARC Anatomical Connectivity Maps and SPARC Functional Connectivity maps. This will enable workflows to be automatically assembled not only based on input/output relationships, but also based on anatomical and physiological connectivity.
-- Expand tool descriptions that can be accessed e.g. Workflow Description Language, Nextflow, Snakemake etc 
-- Link with Large Language Models to support more complex queries, for example to help visualise quantities of interest.
-- Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
-- Provide API documentation.
 
 -->
 
@@ -123,8 +132,7 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 #### Pre-requisites 
 
 - Container service, for example:
-  -  Docker vX.X or greater; or
-  -  Singularity vX.X or greater
+  -  Docker vX.X or greater
 <!--*
 - [Git](https://git-scm.com/)
 - Python. Tested on:
@@ -175,7 +183,7 @@ git clone https://github.com/SPARC-FAIR-Codeathon/2025-team-D.git
 
 ### Creating plugins
 
-The Jupyter Notebook tutorials below will guide you through creating SPARC portal plugins and how they can be dynamically integrated into the SPARC portal. These tutorials make use of the sparc-plugins development environment, which deploys a local instance of the SPARC portal as described in Section X.
+The tutorials below will guide you through creating SPARC portal plugins and how they can be dynamically integrated into the SPARC portal. These tutorials make use of the sparc-plugins development environment, which deploys a local instance of the SPARC portal as described in Section X.
 
 1. Building plugins using:
 
@@ -280,11 +288,25 @@ Fork this repository and submit a pull request to contribute. Before doing so, p
 
 -->
 
+
+
+## Future developments
+- Migrate to using microservices
+<!--*
+- Standardise the description of intputs and outputs of these models and tools
+- Integrate our knowledge graph with other knowledgebases including the SPARC Anatomical Connectivity Maps and SPARC Functional Connectivity maps. This will enable workflows to be automatically assembled not only based on input/output relationships, but also based on anatomical and physiological connectivity.
+- Expand tool descriptions that can be accessed e.g. Workflow Description Language, Nextflow, Snakemake etc 
+- Link with Large Language Models to support more complex queries, for example to help visualise quantities of interest.
+- Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
+- Provide API documentation.
+
+-->
+
 ## Cite us
 If you use sparc-plugins to make new discoveries or use the source code, please cite us as follows:
 Please note that the Zenodo link is a placeholder and can only be added once this repository is made public (after the codathon is completed).
 ```
-Kekayan Nanthakumar, Xinyue Zhong, Linkun Gao, Thiranja Prasad Babarenda Gamage, Chinchien Lin (2024). sparc-plugins: v1.0.0 - An ecosystem for dynamically integrating accessible feature rich interactive tools into the SPARC portal in accordance with FAIR principles. Zenodo. https://doi.org/XXXX/zenodo.XXXX.
+Kekayan Nanthakumar, Xinyue Zhong, Linkun Gao, Thiranja Prasad Babarenda Gamage, Chinchien Lin (2025). sparc-plugins: v1.0.0 - An ecosystem for dynamically integrating accessible feature rich interactive tools into the SPARC portal in accordance with FAIR principles. Zenodo. https://doi.org/XXXX/zenodo.XXXX.
 ```
 
 ## License
@@ -299,5 +321,3 @@ sparc-plugins is fully open source and distributed under the very permissive Apa
 
 ## Acknowledgements
 We would like to thank the organizers of the 2025 SPARC Codeathon for their guidance and support during this Codeathon.
-
-No work was done on this codeathon project prior to the start of the codeathon.
