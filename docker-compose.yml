@@ -10,4 +10,5 @@ services:
       - "3000:3000"
     env_file:
       - ./sparc-app-2/.env
-    command: yarn dev
+#    command: yarn dev
+    command: sh -c "rm -f /tmp/nitro/*.sock && yarn dev"
