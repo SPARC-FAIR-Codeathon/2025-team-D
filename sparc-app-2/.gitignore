@@ -6,6 +6,7 @@
 .cache
 .yarn
 dist
+public2
 
 # Node dependencies
 node_modules
