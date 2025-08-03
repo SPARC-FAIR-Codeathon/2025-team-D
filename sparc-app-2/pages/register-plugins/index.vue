@@ -78,49 +78,81 @@
                     <svgo-icon-puzzle />
                   </div>
                   <div class="plugin-actions-corner">
-                    <el-button 
-                      v-if="item.source === 'metadata'"
-                      size="small" 
-                      type="primary"
-                      @click.stop="handleItemClick(item)"
-                    >
-                      Launch
-                    </el-button>
-                    <!-- API Plugin Actions -->
-                    <el-button 
-                      v-if="item.source === 'api' && item.status === 'pending'"
-                      size="small" 
-                      type="success"
-                      :loading="buildingPlugins.has(item.id!)"
-                      @click.stop="buildPlugin(item)"
-                    >
-                      {{ buildingPlugins.has(item.id!) ? 'Building...' : 'Build' }}
-                    </el-button>
-                    <el-button 
-                      v-if="item.source === 'api' && item.status === 'building'"
-                      size="small" 
-                      disabled
-                      @click.stop
-                    >
-                      Building...
-                    </el-button>
-                    <el-button 
-                      v-if="item.source === 'api' && item.status === 'completed'"
-                      size="small" 
-                      disabled
-                      @click.stop
-                    >
-                      Built
-                    </el-button>
-                    <el-button 
-                      v-if="item.source === 'api' && item.status === 'failed'"
-                      size="small" 
-                      type="danger"
-                      :loading="buildingPlugins.has(item.id!)"
-                      @click.stop="buildPlugin(item)"
-                    >
-                      {{ buildingPlugins.has(item.id!) ? 'Rebuilding...' : 'Retry Build' }}
-                    </el-button>
+                    <div class="plugin-actions-wrapper">
+                      <el-button 
+                        v-if="item.source === 'metadata'"
+                        size="small" 
+                        type="primary"
+                        @click.stop="handleItemClick(item)"
+                      >
+                        Launch
+                      </el-button>
+                      <!-- API Plugin Actions -->
+                      <el-button 
+                        v-if="item.source === 'api' && item.status === 'pending'"
+                        size="small" 
+                        type="success"
+                        :loading="buildingPlugins.has(item.id!)"
+                        @click.stop="buildPlugin(item)"
+                      >
+                        {{ buildingPlugins.has(item.id!) ? 'Building...' : 'Build' }}
+                      </el-button>
+                      <el-button 
+                        v-if="item.source === 'api' && item.status === 'building'"
+                        size="small" 
+                        disabled
+                        @click.stop
+                      >
+                        Building...
+                      </el-button>
+                      <el-button 
+                        v-if="item.source === 'api' && item.status === 'completed'"
+                        size="small" 
+                        disabled
+                        @click.stop
+                      >
+                        Built
+                      </el-button>
+                      <el-button 
+                        v-if="item.source === 'api' && item.status === 'failed'"
+                        size="small" 
+                        type="danger"
+                        :loading="buildingPlugins.has(item.id!)"
+                        @click.stop="buildPlugin(item)"
+                      >
+                        {{ buildingPlugins.has(item.id!) ? 'Rebuilding...' : 'Retry Build' }}
+                      </el-button>
+                      
+                      <!-- Three-dot menu for plugins -->
+                      <el-dropdown 
+                        trigger="click"
+                        placement="bottom-end"
+                        @click.stop
+                      >
+                        <el-button 
+                          class="plugin-menu-btn"
+                          size="small"
+                          text
+                          @click.stop
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="5" r="2" fill="currentColor"/>
+                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                            <circle cx="12" cy="19" r="2" fill="currentColor"/>
+                          </svg>
+                        </el-button>
+                        <template #dropdown>
+                          <el-dropdown-menu>
+                            <el-dropdown-item 
+                              @click="deletePlugin(item)"
+                              class="delete-menu-item"
+                            >
+                              <span style="color: #F56C6C;">Delete Plugin</span>
+                            </el-dropdown-item>
+                          </el-dropdown-menu>
+                        </template>
+                      </el-dropdown>
+                    </div>
                   </div>
                 </div>
                 <div class="plugin-info">
@@ -403,6 +435,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRemoteAppStore } from '@/store/remoteStore'
 import FancyModal from '@/components/FancyModal/FancyModal.vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 type Item = {
     name: string;
@@ -763,6 +796,58 @@ const buildPlugin = async (plugin: Item) => {
   }
 }
 
+const deletePlugin = async (plugin: Item) => {
+  if (!plugin.id) return
+  
+  // Show confirmation dialog
+  try {
+    await ElMessageBox.confirm(
+      `Are you sure you want to delete the plugin "${plugin.name}"? This action cannot be undone.`,
+      'Delete Plugin',
+      {
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel',
+        type: 'warning',
+        confirmButtonClass: 'el-button--danger'
+      }
+    )
+  } catch {
+    // User cancelled
+    return
+  }
+  
+  try {
+    const response = await fetch(`${API_BASE_URL}/plugins/${plugin.id}`, {
+      method: 'DELETE',
+      headers: {
+        'accept': 'application/json'
+      }
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData.detail || `Delete failed: ${response.status}`)
+    }
+
+    ElMessage({
+      message: `Plugin "${plugin.name}" has been deleted successfully.`,
+      type: 'success',
+      duration: 3000
+    })
+    
+    // Refresh the plugins list
+    await loadPluginsFromAPI()
+    
+  } catch (error) {
+    console.error('Delete failed:', error)
+    ElMessage({
+      message: error.message || 'Failed to delete plugin. Please try again.',
+      type: 'error',
+      duration: 5000
+    })
+  }
+}
+
 const loadPluginsFromAPI = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/plugins/`)
@@ -1015,6 +1100,42 @@ onMounted(async () => {
 
 .plugin-actions-corner {
   flex-shrink: 0;
+}
+
+.plugin-actions-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plugin-menu-btn {
+  padding: 4px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  border: 1px solid #dcdfe6 !important;
+  background: white !important;
+  
+  &:hover {
+    background: #f5f7fa !important;
+    border-color: $purple !important;
+    color: $purple !important;
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: #606266;
+  }
+  
+  &:hover svg {
+    color: $purple;
+  }
+}
+
+.delete-menu-item {
+  &:hover {
+    background-color: #fef0f0;
+  }
 }
 
 .plugin-info {
