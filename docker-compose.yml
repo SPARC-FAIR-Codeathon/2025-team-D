@@ -1,0 +1,15 @@
+#version: '3'
+
+services:
+  sparc-app-2:
+    build:
+      context: ./sparc-app-2
+      dockerfile: Dockerfile
+    image: sparc-app-2:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./sparc-app-2/.env
+#    command: yarn dev
+    command: sh -c "rm -f /tmp/nitro/*.sock && yarn dev"
