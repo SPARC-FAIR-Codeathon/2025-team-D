@@ -230,11 +230,11 @@
               <el-form-item prop="repository_url" label="Source URL *">
                 <el-input 
                   v-model="registrationForm.repository_url" 
-                  placeholder="https://github.com/user/repo.git or /local/path"
+                  placeholder="https://github.com/user/repo.git or ./plugins/MyApp"
                   size="large"
                 />
                 <div class="form-help">
-                  Git repository URL or local path
+                  Git repository URL (e.g., https://github.com/user/repo.git) or local path (e.g., ./plugins/MyApp, plugins/MyApp, or just MyApp)
                 </div>
               </el-form-item>
             </div>
@@ -285,6 +285,20 @@
                   placeholder="Brief description of your plugin..."
                   size="large"
                 />
+              </el-form-item>
+            </div>
+
+            <!-- Build Command - Full Width -->
+            <div class="form-full-width">
+              <el-form-item prop="plugin_metadata.build_command" label="Build Command">
+                <el-input 
+                  v-model="registrationForm.plugin_metadata.build_command" 
+                  placeholder="npm run build"
+                  size="large"
+                />
+                <div class="form-help">
+                  Command to build your plugin (e.g., npm run build, yarn build)
+                </div>
               </el-form-item>
             </div>
           </div>
@@ -445,7 +459,8 @@ const registrationForm = ref({
   repository_url: '',
   plugin_metadata: {
     expose: '',
-    path: ''
+    path: '',
+    build_command: 'npm run build'
   },
   agreeToTerms: false
 })
@@ -453,19 +468,22 @@ const registrationForm = ref({
 
 const formRules = {
   repository_url: [
-    { required: true, message: 'Please enter the source URL', trigger: 'blur' },
+    { required: true, message: 'Please enter the source URL or local path', trigger: 'blur' },
     {
       validator: (rule: any, value: string, callback: (error?: Error) => void) => {
         if (!value) {
-          callback(new Error('Source URL is required'))
+          callback(new Error('Source URL or local path is required'))
           return
         }
         // Allow Git URLs or local paths
-        const isGitUrl = /^https?:\/\/.+/.test(value)
-        const isLocalPath = value.startsWith('/') || value.includes(':')
+        const isGitUrl = /^https?:\/\/.+/.test(value) || value.startsWith('git@')
+        const isLocalPath = value.startsWith('./plugins/') || 
+                           value.startsWith('/plugins/') || 
+                           value.startsWith('plugins/') ||
+                           !value.includes('://')  // Simple folder name like "MyApp"
         
         if (!isGitUrl && !isLocalPath) {
-          callback(new Error('Please enter a valid Git URL (https://...) or local path (/path/to/plugin)'))
+          callback(new Error('Please enter a valid Git URL or local path (e.g., ./plugins/MyApp, plugins/MyApp, or MyApp)'))
         } else {
           callback()
         }
@@ -592,7 +610,8 @@ const resetForm = () => {
     repository_url: '',
     plugin_metadata: {
       expose: '',
-      path: ''
+      path: '',
+      build_command: 'npm run build'
     },
     agreeToTerms: false
   }
@@ -623,7 +642,8 @@ const submitRegistration = async () => {
       repository_url: registrationForm.value.repository_url,
       plugin_metadata: {
         expose: registrationForm.value.plugin_metadata.expose,
-        path: registrationForm.value.plugin_metadata.path
+        path: registrationForm.value.plugin_metadata.path,
+        build_command: registrationForm.value.plugin_metadata.build_command
       }
     }
 

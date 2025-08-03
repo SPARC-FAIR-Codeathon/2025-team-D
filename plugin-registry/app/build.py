@@ -89,14 +89,14 @@ class PluginBuilder:
                 "stderr": e.stderr,
                 "error": str(e)
             }
-    
-    def npm_build(self, project_dir: Path) -> Dict[str, Any]:
+
+    def npm_build(self, project_dir: Path, build_cmd: str) -> Dict[str, Any]:
         """Run npm build in the project directory"""
         try:
             logger.info(f"Running npm build in {project_dir}")
             
             result = subprocess.run(
-                ["npm", "run", "build"],
+                build_cmd.split(),
                 cwd=project_dir,
                 capture_output=True,
                 text=True,
@@ -114,6 +114,7 @@ class PluginBuilder:
             logger.error(f"npm build failed: {e}")
             logger.error(f"stdout: {e.stdout}")
             logger.error(f"stderr: {e.stderr}")
+            
             return {
                 "success": False,
                 "stdout": e.stdout,
@@ -223,18 +224,40 @@ class PluginBuilder:
         creaated_at = plugin.get("created_at", "unknown")
         author = plugin.get("author", "unknown")
         description = plugin.get("description", "No description provided")
+        cloned_dir = None
         try:
             # Step 0: Check for existing metadata
             logger.info("Step 0: Checking for existing plugin metadata...")
             
-            # Step 1: Clone the repository
+            # Step 1: Clone the repository or use local path
             if self.is_git_url(repo_url):
                 logger.info("Step 1: Cloning repository...")
                 project_dir = self.clone_repository(repo_url, branch)
+                cloned_dir = project_dir  # Mark for cleanup
                 logger.info(f"Repository cloned to: {project_dir}")
             else:
                 logger.info("Step 1: Using local repository...")
-                project_dir = repo_url
+                # For local paths, map them to the mounted volume
+                # If the path starts with ./plugins or /plugins, use it as-is
+                # Otherwise, assume it's a relative path under /plugins
+                if repo_url.startswith('./plugins/'):
+                    # Convert relative path to absolute within container
+                    plugin_name = repo_url.replace('./plugins/', '')
+                    project_dir = Path(f'/plugins/{plugin_name}')
+                elif repo_url.startswith('/plugins/'):
+                    # Already an absolute path in the container
+                    project_dir = Path(repo_url)
+                else:
+                    # Assume it's a plugin name/path under /plugins
+                    # Remove leading ./ if present
+                    clean_path = repo_url.lstrip('./')
+                    project_dir = Path(f'/plugins/{clean_path}')
+                
+                if not project_dir.exists():
+                    raise RuntimeError(f"Local path does not exist: {project_dir}")
+                if not project_dir.is_dir():
+                    raise RuntimeError(f"Local path is not a directory: {project_dir}")
+                logger.info(f"Using local project directory: {project_dir}")
             
             # Step 2: Check if it's an npm project and extract metadata
             logger.info("Step 2: Checking for npm project...")
@@ -252,48 +275,82 @@ class PluginBuilder:
             
             # Step 4: npm build
             logger.info("Step 4: Running npm build...")
-            build_result = self.npm_build(project_dir)
+            build_result = self.npm_build(project_dir, metadata.get("build_command", "npm run build"))
             if not build_result["success"]:
                 raise RuntimeError(f"npm build failed: {build_result.get('error', 'Unknown error')}")
             logger.info("npm build completed successfully")
 
-            # Step 5: replace the path in the umd.js file to the new path with the minio path
-            logger.info("Step 5: Replacing path in umd.js file...")
-            self.replace_path_in_umd_js(project_dir, metadata)
-            logger.info("Path in umd.js file replaced successfully")
+            # Step 5: replace the path in the umd.js file (only for remote repos, not local)
+            if cloned_dir:
+                logger.info("Step 5: Replacing path in umd.js file...")
+                self.replace_path_in_umd_js(project_dir, metadata)
+                logger.info("Path in umd.js file replaced successfully")
+            else:
+                logger.info("Step 5: Skipping path replacement for local plugin")
             
-            # Step 5: Create SPARC-ME dataset
-            logger.info("Step 5: Creating SPARC-ME dataset...")
+            # Step 5: Create SPARC-ME dataset (only for remote repos)
+            dataset_dir = None
+            if cloned_dir:
+                logger.info("Step 5: Creating SPARC-ME dataset...")
+                
+                # Look for common build output directories
+                build_output_dir = None
+                possible_build_dirs = ["dist"]
+                for dir_name in possible_build_dirs:
+                    potential_dir = project_dir / dir_name
+                    if potential_dir.exists():
+                        build_output_dir = potential_dir
+                        logger.info(f"Found build output directory: {build_output_dir}")
+                        break
+                
+                dataset_dir = self.create_sparc_dataset(project_dir, build_output_dir)
+                logger.info(f"SPARC dataset created in: {dataset_dir}")
+            else:
+                logger.info("Step 5: Skipping SPARC dataset creation for local plugin")
             
-            # Look for common build output directories
-            build_output_dir = None
-            possible_build_dirs = ["dist"]
-            for dir_name in possible_build_dirs:
-                potential_dir = project_dir / dir_name
-                if potential_dir.exists():
-                    build_output_dir = potential_dir
-                    logger.info(f"Found build output directory: {build_output_dir}")
-                    break
+            # Step 6: Upload dataset to MinIO or copy to public directory
+            s3_path = None
+            if cloned_dir:
+                logger.info("Step 6: Uploading dataset to MinIO...")
+                try:
+                    minio_client = get_minio_client()
+                    logger.info(f"Uploading dataset to MinIO: {metadata}")
+                    dataset_name = f"{metadata['path']}"
+                    logger.info(f"Uploading dataset to MinIO: {dataset_name}")
+                    s3_path = minio_client.upload_directory(str(dataset_dir), dataset_name)
+                    logger.info(f"Dataset uploaded to MinIO: {s3_path}")
+                except Exception as e:
+                    logger.error(f"Failed to upload to MinIO: {e}")
+                    s3_path = None
+            else:
+                logger.info("Step 6: Copying local plugin to public directory...")
+                # For local plugins, copy dist files to public directory using the path from metadata
+                public_dir = Path("/app/portal/public")
+                
+                # Use the path from metadata as the folder name
+                plugin_path_name = metadata.get('path', 'plugin')
+                plugin_public_dir = public_dir / plugin_path_name
+                plugin_public_dir.mkdir(parents=True, exist_ok=True)
+                
+                # Copy dist folder contents directly
+                dist_dir = project_dir / "dist"
+                if dist_dir.exists():
+                    for item in dist_dir.iterdir():
+                        if item.is_file():
+                            shutil.copy2(item, plugin_public_dir / item.name)
+                            logger.info(f"Copied {item.name} to public/{plugin_path_name}")
+                        elif item.is_dir():
+                            shutil.copytree(item, plugin_public_dir / item.name, dirs_exist_ok=True)
+                            logger.info(f"Copied directory {item.name} to public/{plugin_path_name}")
+                    logger.info(f"Local plugin files copied to {plugin_public_dir}")
             
-            dataset_dir = self.create_sparc_dataset(project_dir, build_output_dir)
-            logger.info(f"SPARC dataset created in: {dataset_dir}")
-            
-            # Step 6: Upload dataset to MinIO
-            logger.info("Step 6: Uploading dataset to MinIO...")
-            try:
-                minio_client = get_minio_client()
-                logger.info(f"Uploading dataset to MinIO: {metadata}")
-                dataset_name = f"{metadata['path']}"
-                logger.info(f"Uploading dataset to MinIO: {dataset_name}")
-                s3_path = minio_client.upload_directory(str(dataset_dir), dataset_name)
-                logger.info(f"Dataset uploaded to MinIO: {s3_path}")
-            except Exception as e:
-                logger.error(f"Failed to upload to MinIO: {e}")
-                s3_path = None
-            
-            # Clean up temporary files
+            # Clean up temporary files (only for cloned repos, not local paths)
             logger.info("Step 7: Cleaning up temporary files...")
-            shutil.rmtree(project_dir)
+            if cloned_dir:
+                shutil.rmtree(cloned_dir)
+                logger.info("Cleaned up cloned repository")
+            else:
+                logger.info("Skipping cleanup for local path")
             
             # write metadata to the portal public metadata.json file which is mounted in this docker container
             # /app/portal/public
@@ -312,16 +369,25 @@ class PluginBuilder:
             if "components" not in existing_metadata:
                 existing_metadata["components"] = []
             
+            # Determine the path based on whether it's a local plugin or remote
+            if cloned_dir:
+                # Remote plugin - use MinIO URL
+                plugin_path = f"http://localhost:9000/plugins/{metadata['path']}/primary/my-app.umd.js"
+            else:
+                # Local plugin - use public directory path with metadata path
+                plugin_path = f"/{metadata['path']}/my-app.umd.js"
+            
             component_entry = {
                 "id": plugin_id,
                 "name": plugin_name,
-                "path": f"http://localhost:9000/plugins/{metadata['path']}/primary/my-app.umd.js",
+                "path": plugin_path,
                 "expose": metadata.get("expose", "MyApp"),
                 "description": description,
                 "version": version,
                 "created_at": creaated_at,
                 "author": author,
                 "repository_url": repo_url,
+                "is_local": not bool(cloned_dir),  # Flag to indicate if it's a local plugin
             }
             
             component_exists = False
@@ -344,10 +410,11 @@ class PluginBuilder:
             
             return {
                 "success": True,
-                "dataset_path": str(dataset_dir),
+                "dataset_path": str(dataset_dir) if dataset_dir else None,
                 "s3_path": s3_path,
                 "build_logs": "\n".join(build_logs),
                 "error_message": None,
+                "is_local": not bool(cloned_dir),
             }
             
         except Exception as e:

@@ -20,6 +20,7 @@ services:
     volumes:
       - sparc_datasets:/datasets
       - ./sparc-app-2/public:/app/portal/public
+      - ./plugins:/plugins
     restart: unless-stopped
     networks:
       - sparc-network
@@ -37,6 +38,7 @@ services:
       - sparc-network
     volumes:
       - ./sparc-app-2/public:/app/public
+      - ./plugins:/plugins
     env_file:
       - ./sparc-app-2/.env
     command: sh -c "rm -f /tmp/nitro/*.sock && yarn dev"
