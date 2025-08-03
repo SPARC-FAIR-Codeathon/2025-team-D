@@ -60,12 +60,12 @@ From the SPARC portal, there is **currenlty no ability for users to easily**:
 - **perform customised searches** of sparc datasets or knowledge bases
 - **customise or extend existing functionality** e.g. of data viewers and connectivity map visualisations
 - **add new functionality** to interact with sparc datasets or knowledge bases, including
-  - provide new services e.g. image segmentation
+  - provide new services e.g. image segmentation, integrating state-of-the-art tools
 - access existing or any such new capabilities during dataset or model development
 - enable non-technical users to engage with developing and contributing such features
-- rapidly prototype such capabilites
+- rapidly prototype such functionality
 
-Adding any of the above functionality requires expert software engineers familiar with the SPARC portal codebase to modify existing portal capabilities or develop the desired capabilities. The entire SPARC portal then needs to be taken offline, its codebase updated and re-deployed, which will cause significant disruptions for all community users.
+Adding any of the above functionality requires expert software engineers familiar with the SPARC portal codebase to modify existing portal capabilities or develop the desired capabilities. The entire SPARC portal then needs to be taken offline, its codebase updated and re-deployed, which will cause significant disruptions for all users in the SPARC community.
 
 ## Our solution - sparc-plugins
 
