@@ -1,0 +1,28 @@
+{
+    "conponents": [
+        {
+            "name": "Test App",
+            "path": "my-test-app/my-app.umd.js",
+            "expose": "MyApp",
+            "description": "A test application for Vue.js integration"
+        },
+        {
+            "name": "My Digital Twins App Local",
+            "path": "my_digitaltwins/my_digitaltwin.umd.js",
+            "expose": "MyDigitalTwinsApp",
+            "description": "An application for digital twin visualization and interaction"
+        },
+        {
+            "name": "Segmentation App Local",
+            "path": "segmentation-app/segmentation_app.umd.js",
+            "expose": "SegmentationApp",
+            "description": "An application for tumour segmentation and reporting"
+        },
+        {
+            "name": "Segmentation App GitHub",
+            "path": "https://cdn.jsdelivr.net/gh/Copper3D-brids/test@main/segmentation_app.umd.js",
+            "expose": "SegmentationApp",
+            "description": "An application for tumour segmentation and reporting"
+        }
+    ]
+}
