@@ -1,13 +1,13 @@
-version: '3'
+#version: '3'
 
 services:
   sparc-app-2:
     build:
-      context: ./frontend
+      context: ./sparc-app-2
       dockerfile: Dockerfile
     image: sparc-app-2:latest
     ports:
       - "3000:3000"
     env_file:
-      - ./frontend/.env
+      - ./sparc-app-2/.env
     command: yarn dev
