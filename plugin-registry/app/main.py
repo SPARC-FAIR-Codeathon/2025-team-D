@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import json
 from datetime import datetime
@@ -28,6 +29,14 @@ async def lifespan(app: FastAPI):
     pass
 
 app = FastAPI(title="Plugin Registry API", version="1.0.0", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 builder = PluginBuilder()
 
@@ -119,7 +128,7 @@ async def execute_build(
                     session.commit()
             
             builder = PluginBuilder()
-            result = builder.build_plugin(plugin.repository_url, plugin.plugin_metadata)
+            result = builder.build_plugin(plugin_dict)
             
             with SessionLocal() as session:
                 build_record = session.query(PluginBuild).filter(PluginBuild.build_id == build_id).first()

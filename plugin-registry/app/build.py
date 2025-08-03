@@ -3,8 +3,10 @@ import subprocess
 import shutil
 import tempfile
 import uuid
+import json
 from pathlib import Path
 from typing import Optional, Dict, Any
+from urllib.parse import quote
 
 from sparc_me import Dataset
 from .logger import get_logger
@@ -201,22 +203,26 @@ class PluginBuilder:
         with open(umd_js_file_path, "r") as f:
             umd_js_content = f.read()
 
-        new_path_prefix = f"http://localhost:9000/plugins/{metadata['path']}/"
-
+        new_path_prefix = f"http://localhost:9000/plugins/{metadata['path']}/primary/"
         umd_js_content = umd_js_content.replace(new_path_prefix, metadata["path"])
         
         with open(umd_js_file_path, "w") as f:
             f.write(umd_js_content)
     
     def build_plugin(self, 
-                    repo_url: str, 
-                    metadata: Dict[str, Any],
-                    branch: str = "main",
-                    build_script: Optional[str] = None) -> Dict[str, Any]:
+                    plugin: Dict[str, Any]) -> Dict[str, Any]:
         """Complete plugin build process"""
         build_logs = []
         error_message = None
-        
+        repo_url = plugin.get("repository_url")
+        branch = plugin.get("branch", "main")
+        metadata = plugin.get("plugin_metadata", {})
+        plugin_id = plugin.get("id")
+        plugin_name = plugin.get("name", "unknown")
+        version = plugin.get("version", "1.0.0")
+        creaated_at = plugin.get("created_at", "unknown")
+        author = plugin.get("author", "unknown")
+        description = plugin.get("description", "No description provided")
         try:
             # Step 0: Check for existing metadata
             logger.info("Step 0: Checking for existing plugin metadata...")
@@ -288,6 +294,51 @@ class PluginBuilder:
             # Clean up temporary files
             logger.info("Step 7: Cleaning up temporary files...")
             shutil.rmtree(project_dir)
+            
+            # write metadata to the portal public metadata.json file which is mounted in this docker container
+            # /app/portal/public
+            metadata_file = Path("/app/portal/public/metadata.json")
+            
+            existing_metadata = {}
+            if metadata_file.exists():
+                logger.info(f"Reading existing metadata from {metadata_file}")
+                try:
+                    with open(metadata_file, "r") as f:
+                        existing_metadata = json.loads(f.read())
+                except (json.JSONDecodeError, Exception) as e:
+                    logger.warning(f"Failed to read existing metadata, starting fresh: {e}")
+                    existing_metadata = {}
+            
+            if "components" not in existing_metadata:
+                existing_metadata["components"] = []
+            
+            component_entry = {
+                "id": plugin_id,
+                "name": plugin_name,
+                "path": f"http://localhost:9000/plugins/{metadata['path']}/primary/my-app.umd.js",
+                "expose": metadata.get("expose", "MyApp"),
+                "description": description,
+                "version": version,
+                "created_at": creaated_at,
+                "author": author,
+                "repository_url": repo_url,
+            }
+            
+            component_exists = False
+            for i, component in enumerate(existing_metadata["components"]):
+                if component.get("name") == component_entry["name"]:
+                    existing_metadata["components"][i] = component_entry
+                    component_exists = True
+                    logger.info(f"Updated existing component: {component_entry['name']}")
+                    break
+            
+            if not component_exists:
+                existing_metadata["components"].append(component_entry)
+                logger.info(f"Added new component: {component_entry['name']}")
+            
+            logger.info(f"Writing metadata to {metadata_file}")
+            with open(metadata_file, "w") as f:
+                f.write(json.dumps(existing_metadata, indent=4))
         
             logger.info("Build process completed successfully")
             

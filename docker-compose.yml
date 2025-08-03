@@ -19,6 +19,7 @@ services:
       - MINIO_USE_SSL=false
     volumes:
       - sparc_datasets:/datasets
+      - ./sparc-app-2/public:/app/portal/public
     restart: unless-stopped
     networks:
       - sparc-network
