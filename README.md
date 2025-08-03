@@ -181,9 +181,15 @@ git clone https://github.com/SPARC-FAIR-Codeathon/2025-team-D.git
 
 -->
 
-### Creating plugins
+### Using sparc-plugins
 
-The tutorials below will guide you through creating SPARC portal plugins and how they can be dynamically integrated into the SPARC portal. These tutorials make use of the sparc-plugins development environment, which deploys a local instance of the SPARC portal as described in Section X.
+#### Registering your plugin on the SPARC 
+
+Once the sparc-plugins developement environment has been setup, a local instance of the por
+
+#### Creating and testing your plugins
+
+The tutorials below provide a guide for creation of SPARC portal plugins and how they can be dynamically integrated into the SPARC portal. These tutorials make use of the sparc-plugins development environment, which deploys a local instance of the SPARC portal as described in Section X.
 
 1. Building plugins using:
 
@@ -192,13 +198,17 @@ The tutorials below will guide you through creating SPARC portal plugins and how
   
 2. Integrating plugins into the SPARC portal
 
-3. Creating plugins that can acess SPARC datasets
+3. Creating plugins that can access SPARC datasets
 
-4. Reusing (and extending) an existing SPARC portal component as a plugin
+4. Reusing and extending an existing SPARC portal component as a plugin
 
 5. Creating plugins that link to external services
 
 6. Automatically creating new plugins with generative AI
+
+#### Deploying your plugin
+
+Once the plugin has been created and tested, the code repository link can be submitted to via plugins page on the SPARC portal. This will allow the SPARC team to assess the submission, including performing security checks. Once approved, the plugin will automatically be built and integrated into the SPARC portal's plugin page for others to use. **Note For the Codeathon demonstration, the assessment of the subbmission is skipped and the plugin is automatically deployed into the portal in the sparc-plugins development enviroment**
 
 ### Example SPARC portal plugins
 
@@ -207,13 +217,13 @@ They also come bundled with the sparc-plugins development environment. Once you 
 
 1. Hello world
 
-2. Reusing the existing Human Body visualisation SPARC portal component as a plugin
+2. Reusing and extending the existing Simulation Viewer SPARC portal component
 
-3. Viewing 3D medical images stored in the SPARC Dataset Structure (SDS)
+3. Viewing 3D medical images in sparc datasets and segmenting them using an existing pre-trained state-of-the-art AI annotation tool (NNInteractive)
 
-4. Segmenting 3D medical images using an existing pre-trained state-of-the-art AI annotation tool (NNInteractive)
+4. Using a Large Language Model (LLM) chatbot to explore SPARC portal resources including SPARC datasets and knowledge bases
 
-5. Using a Large Language Model (LLM) chatbot for invesitgating existing datasets in the SPARC portal 
+5. Converting SPARC scaffold models to common formats used for animation (GLTF)
 
 
 <!--*
