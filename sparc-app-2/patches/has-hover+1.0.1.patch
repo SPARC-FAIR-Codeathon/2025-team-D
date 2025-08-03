@@ -1,0 +1,13 @@
+diff --git a/node_modules/has-hover/index.js b/node_modules/has-hover/index.js
+index b8a51ec..5599483 100644
+--- a/node_modules/has-hover/index.js
++++ b/node_modules/has-hover/index.js
+@@ -4,7 +4,7 @@ var isBrowser = require('is-browser')
+ var hasHover
+ 
+ if (typeof global.matchMedia === 'function') {
+-	hasHover = !global.matchMedia('(hover: none)').matches
++	hasHover = !globalThis.matchMedia('(hover: none)').matches
+ }
+ else {
+ 	hasHover = isBrowser
