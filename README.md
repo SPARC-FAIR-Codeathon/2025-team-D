@@ -41,9 +41,11 @@ Making the SPARC portal more FAIR
 * [Acknowledgements](#acknowledgements)
 
 ## About
-This is the repository of Team sparc-plugins (Team D) of the 2025 SPARC Codeathon. Click [here](https://sparc.science/help/2025-sparc-fair-codeathon) to find out more about the SPARC Codeathon 2025. Check out the [Team Section](#team) of this page to find out more about our team members.
+Welcome to the repository of **Team sparc-plugins (Team D)** from the **2025 SPARC Codeathon**. 
 
-No work was done on this codeathon project prior to the start of the codeathon.
+Learn more about the Codeathon [here](https://sparc.science/help/2025-sparc-fair-codeathon), and meet our team members in the [Team Section](#team) below.
+
+**Note**: No work was done on this project prior to the start of the Codeathon.
 
 ## Introduction
 The NIH Common Fund program on **[Stimulating Peripheral Activity to Relieve Conditions (SPARC)](https://commonfund.nih.gov/sparc) focuses on understanding peripheral nerves** (nerves that connect the brain and spinal cord to the rest of the body), **how their electrical signals control internal organ function**, and **how therapeutic devices could be developed to modulate electrical activity in nerves to improve organ function**. This may provide a potentially powerful way to treat a diverse set of common conditions and diseases such hypertension, heart failure, gastrointestinal disorders, and more. 60 research groups spanning 90 institutions and companies contribute to SPARC and work across over 15 organs and systems in 8 species.
