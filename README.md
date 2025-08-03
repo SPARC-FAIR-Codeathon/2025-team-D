@@ -1,8 +1,5 @@
 # SPARC Plugins (sparc-plugins)
-An ecosystem for dynamically integrating rich and interactive features into the SPARC portal in accordance with FAIR principles.
-
-Making the SPARC portal more FAIR
-
+An ecosystem for dynamically integrating rich, interactive features into the SPARC portal in accordance with FAIR principles.
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -48,31 +45,35 @@ Learn more about the Codeathon [here](https://sparc.science/help/2025-sparc-fair
 **Note**: No work was done on this project prior to the start of the Codeathon.
 
 ## Introduction
-The NIH Common Fund program on **[Stimulating Peripheral Activity to Relieve Conditions (SPARC)](https://commonfund.nih.gov/sparc) focuses on understanding peripheral nerves** (nerves that connect the brain and spinal cord to the rest of the body), **how their electrical signals control internal organ function**, and **how therapeutic devices could be developed to modulate electrical activity in nerves to improve organ function**. This may provide a potentially powerful way to treat a diverse set of common conditions and diseases such hypertension, heart failure, gastrointestinal disorders, and more. 60 research groups spanning 90 institutions and companies contribute to SPARC and work across over 15 organs and systems in 8 species.
+The **[NIH Common Fund SPARC program](https://commonfund.nih.gov/sparc)**(Stimulating Peripheral Activity to Relieve Conditions) aims to advance our understanding of **peripheral nerves**—those that connect the brain and spinal cord to the rest of the body—and how their electrical signals regulate internal organ function. The ultimate goal is to develop **therapeutic devices** that modulate nerve activity to improve organ function and treat conditions such as hypertension, heart failure, and gastrointestinal disorders.
 
-**The [SPARC Portal](http://sparc.science/) provides a single user-facing online interface to resources** that can be shared, cited, visualized, computed, and used for virtual experimentation. **key offerings** of the portal include:
-- the **collection of well-curated datasets in a standardised format, including anatomical and computational models** that are being generated both SPARC-funded researchers and the international scientific community. These datasets can be found under the "[Find Data](https://sparc.science/data?type=dataset)" section of the SPARC Portal. Information regarding [how to navigate a SPARC dataset](https://docs.sparc.science/docs/navigating-a-sparc-dataset) and [how a dataset is formatted](https://docs.sparc.science/docs/overview-of-sparc-dataset-format) can be found on the SPARC Portal.
-- web tools integrated direclty into the portal for exploring these resources datasets and SPARC knowledge bases, including:
-  - searching data with pre-configured filters 
-  - pre-configured data viewers e.g. gallery, image, plot, scaffold, segmentation, simulation, and dataset viewers
-  - viewing anatomical and functional connectivity maps using pre-configured visualisation interfaces
+SPARC is a collaborative effort involving **60 research groups across 90 institutions and companies**, working on **over 15 organs and systems in 8 species**.
+
+The **[SPARC Portal](http://sparc.science/)** provides a single user-facing online interface to access resources developed by the SPARC community that can be shared, cited visualised, computed, and used for virtual experimentation. Key features include:
+- A **collection of well-curated datasets** in a standardised format, including anatomical and computational. These datasets can be explored under the "[Find Data](https://sparc.science/data?type=dataset)" section of the SPARC Portal, and resources are provided describing how [how to navigate a SPARC dataset](https://docs.sparc.science/docs/navigating-a-sparc-dataset) and [how a dataset is formatted](https://docs.sparc.science/docs/overview-of-sparc-dataset-format).
+- Web tools integrated direclty into the portal for exploring SPARC resources:, including:
+  - Searching datasets with pre-configured filters 
+  - Pre-configured data viewers e.g. gallery, image, plot, scaffold, segmentation, simulation, and dataset viewers
+  - Viewing anatomical and functional connectivity maps using pre-configured visualisation interfaces
 
 ## The problem
-From the SPARC portal, there is **currenlty no ability for users to easily**:
-- **perform customised searches** of sparc datasets or knowledge bases
-- **customise or extend existing functionality** e.g. of data viewers and connectivity map visualisations
-- **add new functionality** to interact with sparc datasets or knowledge bases, including
-  - provide new services e.g. image segmentation, integrating state-of-the-art tools
-- access existing or any such new capabilities during dataset or model development
-- enable non-technical users to engage with developing and contributing such features
-- rapidly prototype such functionality
+Despite its rich offering, the **SPARC portal currently lacks the ability for users to easily**:
+- **Perform customised searches** across datasets and knowledge bases
+- **Extend or modify existing functionality** such as data viewers or connectivity map visualisations
+- **Add new interactive features** such as:
+  - Advanced services like image segmentation using state-of-the-art tools
+  - Integration of AI chatbots 
+- **Access these capabilities during dataset or model development**
+- **Enable non-technical users** to contribute or rapidly prototype new features
 
-Adding any of the above functionality requires expert software engineers familiar with the SPARC portal codebase to modify existing portal capabilities or develop the desired capabilities. The entire SPARC portal then needs to be taken offline, its codebase updated and re-deployed, which will cause significant disruptions for all users in the SPARC community.
+Implementing any of the above requires expert software engineers familiar with the SPARC codebase. Changes necessitate taking the portal offline, updating the codebase, and redeploying—causing significant disruption to the SPARC community.
 
 ## Our solution - sparc-plugins
 
-To address this problem, we have **developed SPARC Plugins (sparc-plugins)**, an ecosystem for dynamically integrating rich and interactive features into the SPARC portal in accordance with FAIR principles.
+To address this problem, we have **developed SPARC Plugins (sparc-plugins)**—
+an ecosystem for dynamically integrating rich, interactive features into the SPARC portal in accordance with FAIR principles.
 
+The following features are currently supported:
 <!--*
 The following features are currently supported: 
 - Extracting and annotating existing tools and models from SPARC datasets to help standardise and harmonise their input and output descriptions
@@ -89,13 +90,6 @@ The following features are currently supported:
 - Provides a series of tutorials to demonstrate the functionality of sparc-plugins
 - Reuses existing SPARC resources and tools including [sparc-me](https://github.com/SPARC-FAIR-Codeathon/sparc-me), [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow), and the sparc-python-client.
 
-There is **currently no option for users to**:
-- **easily find and access existing models and tools**:
-  - developed by the SPARC community for processing SPARC data 
-  - developed externally that could be used for processing SPARC data
-- **easily assemble new workflows that reuse existing models and tools to evaluate quantities of interest**
-- **easily identify which measurements (e.g. SPARC datasets) already contain the necessary inputs for these new workflows**
-- **easily identify which measurements, tools, and/or models may be missing** to support efficient advancement of research efforts 
 <!--*
 ## Vision and benefits
 Our vision is to:
@@ -114,6 +108,8 @@ Providing these capabilites would:
 
 -->
 ## Benefits
+Making the SPARC portal more FAIR
+
 <!--*
 
 ## Designed to enable FAIRness
@@ -207,9 +203,9 @@ The tutorials below provide a guide for creation of SPARC portal plugins and how
 
 6. Rapidly prototype new plugins with generative AI
 
-#### Deploying your plugin
+#### Deploying your plugin for production
 
-Once the plugin has been created and tested, the code repository link can be submitted to via plugins page on the SPARC portal. This will allow the SPARC team to assess the submission, including performing security checks. Once approved, the plugin will automatically be built and integrated into the SPARC portal's plugin page for others to use. **Note For the Codeathon demonstration, the assessment of the subbmission is skipped and the plugin is automatically deployed into the portal in the sparc-plugins development enviroment**
+Once the plugin has been created and tested, the code repository link can be submitted via the plugins page on the SPARC portal. This will allow the SPARC team to assess the submission, including performing security checks. Once approved, the plugin will automatically be built and integrated into the SPARC portal's plugin page for others to use. **Note For the Codeathon demonstration, the assessment of the subbmission is skipped and the plugin is automatically deployed into the portal in the sparc-plugins development enviroment**
 
 ### Example SPARC portal plugins
 
