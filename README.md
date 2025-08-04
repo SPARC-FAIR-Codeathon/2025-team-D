@@ -268,39 +268,35 @@ Documentation for how to use these plugins, along with the source code for the f
 <thead>
   <tr>
     <th> Tutorial</th>
-    <th> Description</th>
+    <th> Description</to>
+    <th> Development environment</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-1.md">
-    1
-    </a></td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-1.md">1</a></td>
     <td> Creating and testing plugins using the Cloud-based development environment. </td>
+    <td> Cloud </td>
   </tr>
-    <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-2.md">
-    2
-    </a></td>
+  <tr>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-2.md">2</a></td>
     <td> Reusing and extending an existing SPARC portal component (simulationvuer) as a plugin. This includes functionality for loading data from curated SDS datasets in the SPARC portal and linking to oSPARC services.</td>
+    <td> Cloud </td>
   </tr>
   <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-3.md">
-    3
-    </a></td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-3.md">3</a></td>
     <td> Creating plugins that link to external services. </td>
+    <td> Cloud </td>
   </tr>
     <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-4.md">
-    4
-    </a></td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-4.md">4</a></td>
     <td> Creating plugins using generative AI from the Cloud-based development environment. </td>
+    <td> Cloud </td>
   </tr>
   <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-5.md">
-    5
-    </a></td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-5.md">5</a></td>
     <td> Creating and testing plugins using the local development environment. This includes functionality for loading data from locally stored SDS datasets. </td>
+    <td> Local </td>
   </tr> 
 </tbody>
 </table>
