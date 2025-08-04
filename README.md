@@ -292,7 +292,7 @@ Documentation for how to use these plugins, along with the source code for the f
     <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-2.md">
     2
     </a></td>
-    <td> Creating and testing plugins using generative AI from the Cloud-based development environment . </td>
+    <td> Creating and testing plugins using generative AI from the Cloud-based development environment. </td>
   </tr>
   <tr>
     <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-3.md">
@@ -330,59 +330,6 @@ Chatbot
 #### Deploying your plugin for production
 
 Once the plugin has been created and tested, the code repository link can be submitted via the plugins page on the SPARC portal. This will allow the SPARC team to assess the submission, including performing security checks. Once approved, the plugin will automatically be built and integrated into the SPARC portal's plugin page for others to use. **Note For the Codeathon demonstration, the assessment of the subbmission is skipped and the plugin is automatically deployed into the portal in the sparc-plugins development enviroment**
-
-
-
-
-<table>
-<thead>
-  <tr>
-    <th> Tutorial</th>
-    <th> Description</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial_1_annotate_tools-workflow/tutorial_1_annotating_tools_models.ipynb">
-    1
-    </a></td>
-    <td> Annotation of computational models and tools from existing SPARC datasets. </td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial_2_creating_knowledge_graph/tutorial_2_creating_knowledge_graph.ipynb">
-    2
-    </a></td>
-    <td> Building a knowledge graph for automated workflow assembly. </td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial_3_adding_SPARC_tools_to_the_knowledge_graph/tutorial_3_adding_SPARC_tools_to_the_knowledge_graph.ipynb">
-    3
-    </a></td>
-    <td> Adding tools created from existing SPARC datasets to the knowledge graph. </td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial_4_adding_non-SPARC_tools_and_models_to_the_knowledge_graph/tutorial_4_adding_non-SPARC_tools_and_models_to_the_knowledge_graph.ipynb">
-    4
-    </a></td>
-    <td> Adding non-SPARC tools and models to the knowledge graph. This includes adding an existing model from the Biomodels repository, and a tool from the WorkflowHub repository. </td>
-  </tr> 
-  <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial_5_assemble_workflow/tutorial_5_assemble_workflow.ipynb">
-    5
-    </a></td>
-    <td> Assembling a workflow automatically using sparc-plugins and natural language processing </td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial_6_run_workflow/tutorial_6_run_workflow.ipynb">
-    6
-    </a></td>
-    <td> Running assembled workflows </td>
-  </tr>   
-</tbody>
-</table>
-<p align="center">
-</p>
-<br/>
 
 -->
 
