@@ -166,9 +166,6 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 - Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
 - Provide API documentation.
 
-
-
-
 #### Pre-requisites 
 
 - Container service, for example:
@@ -180,13 +177,6 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 - Operating systems: 
   - Tested on:
     - Ubuntu 24.04
-
-### PyPI
-
-Here is the [link](https://pypi.org/project/sparc-plugins/) to our project on PyPI
-```
-pip install sparc-plugins
-```
 
 ### From source code
 
@@ -286,17 +276,29 @@ Documentation for how to use these plugins, along with the source code for the f
     <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-1.md">
     1
     </a></td>
-    <td> Creating and testing plugins using the Cloud-based development environment. This includes functionality for loading data from curated SDS datasets in the SPARC portal. </td>
+    <td> Creating and testing plugins using the Cloud-based development environment. </td>
   </tr>
-  <tr>
+    <tr>
     <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-2.md">
     2
     </a></td>
-    <td> Creating and testing plugins using generative AI from the Cloud-based development environment. </td>
+    <td> Reusing and extending an existing SPARC portal component (simulationvuer) as a plugin. This includes functionality for loading data from curated SDS datasets in the SPARC portal and linking to oSPARC services.</td>
   </tr>
   <tr>
     <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-3.md">
     3
+    </a></td>
+    <td> Creating plugins that link to external services. </td>
+  </tr>
+    <tr>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-4.md">
+    4
+    </a></td>
+    <td> Creating plugins using generative AI from the Cloud-based development environment. </td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-5.md">
+    5
     </a></td>
     <td> Creating and testing plugins using the local development environment. This includes functionality for loading data from locally stored SDS datasets. </td>
   </tr> 
