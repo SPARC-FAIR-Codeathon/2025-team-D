@@ -1,4 +1,4 @@
-# Tutorial X: Creating plugins that link to external services
+# Tutorial 3: Creating plugins that link to external services
 
 ## Summary
 Brief description of what this tutorial covers and its purpose.  
@@ -59,4 +59,5 @@ npm run build
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
