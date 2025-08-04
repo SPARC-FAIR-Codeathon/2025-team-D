@@ -57,6 +57,18 @@ services:
       - MINIO_SERVER_SECRET_KEY=minioadmin
     command: server /data --console-address ":9001" --address ":9000"
 
+  chatbot:
+    build:
+      context: ./plugins-backend/chatbot
+      dockerfile: Dockerfile
+    container_name: chatbot
+    ports:
+      - "8080:80"
+    networks:
+      - sparc-network
+    env_file:
+      - ./plugins-backend/chatbot/.env
+
 networks:
   sparc-network:
     driver: bridge
