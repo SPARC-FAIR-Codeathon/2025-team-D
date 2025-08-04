@@ -1,9 +1,8 @@
 # Tutorial 4: Creating plugins using generative AI from the Cloud-based development environment
 
 ## Summary
-Brief description of what this tutorial covers and its purpose.  
-For example:  
-This tutorial guides you through creating and testing plugins using the SPARC `sparc-plugins` cloud-based development environment.
+ 
+This tutorial guides you through creating plugins using generative AI from the Cloud-based developmentg environment.
 
 ---
 
@@ -59,5 +58,6 @@ npm run build
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
