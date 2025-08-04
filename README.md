@@ -95,7 +95,7 @@ Provides an **automated and streamlined experience for plugin development, regis
 - Register plugins by referencing their code repositories directly on the Plugins Page
 - Plugins are **automatically built and integrated** into the portal for testing
 - Submit plugins to the SPARC development team for review
-- Approved plugins may be **merged into the main SPARC codebase** for long-term support
+- Approved plugins may be merged into the main SPARC codebase for long-term support
 
 ### 🤖 Generative AI Support
 Integration of **generative AI tools** to empower **non-technical users** to rapidly prototype and test new plugins directly within the SPARC portal
