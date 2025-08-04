@@ -88,8 +88,8 @@ A dedicated **Plugins Page** on the SPARC Portal where users can **browse and ac
   - Advanced image segmentation tools
 - **Process data to generate new datasets**
 
-### 🚀 Automated Cloud-Based Plugin Development
-Offers a **streamlined experience for plugin development, testing, and review** directly on the Plugins Page of the SPARC portal.
+### 🚀 Cloud-Based Plugin Development Environment
+Offers an **automated and streamlined experience for plugin development, testing, and review** directly on the Plugins Page of the SPARC portal.
 **Register and test new plugins** 
 - Create new plugins by reusing existing plugin examples
 - Plugins can be registered by referencing their code repository 
@@ -101,16 +101,17 @@ Offers a **streamlined experience for plugin development, testing, and review** 
 Integration of **generative AI tools** to empower **non-technical users** to rapidly prototype and test new plugins directly within the SPARC portal
 
 ### 🧪 Local Plugin Development Environment
-A **container-based development environment** for advanced users with the following additional features:
+A **container-based development environment** with the following additional features:
 - Includes a **local deployment of the SPARC Portal**
 - Plugins can be registed by referencing source code stored locally
-- Enables integration of **external services** via existing APIs or custom backends to support advanced plugin features
+- Plugins can load locally stored SDS datasets without them needing to be accessible from the SPARC portal
+- Enables integration of **external services** via existing APIs or custom backends to test advanced plugin features
 
 Examples are provided to demonstrate these capabilties.
 
 ## 🎯 Benefits of sparc-plugins
 
-The sparc-plugins ecosystem enhances the SPARC portal by aligning with the FAIR principles and enabling a more dynamic, inclusive, and scalable research environment. This will increase the impact of SPARC developements.
+The sparc-plugins ecosystem enhances the SPARC portal by aligning with the FAIR principles and enabling a more dynamic, inclusive, and scalable research environment. This will increase the impact of SPARC community developements.
 
 ### 🔍 Findable
 - Enables customized search and filtering across datasets and knowledge bases.
@@ -222,7 +223,55 @@ git clone https://github.com/SPARC-FAIR-Codeathon/2025-team-D.git
 
 -->
 
-### Using sparc-plugins
+### Example SPARC portal plugins
+
+Example plugins have been created to demonstrate the capabilites of sparc-plugins. They can be accessed by navigating to the [**Plugins page**](http://130.216.217.115:3000/) of the SPARC portal on the cloud-based development environment. Select the 'Launch' button next to the desired plugin to initiate it.
+ 
+Note: for the purposes of the Codeathon, the cloud-based development environment has been hosted on [ARDC Nectar Research Cloud](https://ardc.edu.au/services/ardc-nectar-research-cloud/).
+
+1. Hello world ([Documentation](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-api/blob/main/README.md))
+
+2. Reusing and extending the existing Simulation Viewer SPARC portal component ([Documentation](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-simulationvuer)
+
+3. Using a Large Language Model (LLM) chatbot to explore SPARC portal resources including SPARC datasets and knowledge bases ([Documentation](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-client/blob/main/README.md)
+
+4. Viewing 3D medical images in sparc datasets and using annotating them using an existing pre-trained state-of-the-art AI annotation tool ([Documentation]()
+
+### Using sparc-plugins to create new plugins
+
+<table>
+<thead>
+  <tr>
+    <th> Tutorial</th>
+    <th> Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-1.md">
+    1
+    </a></td>
+    <td> Creating and testing plugins using the Cloud-based development environment. This includes functionality for loading data from curated SDS datasets in the SPARC portal. </td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-2.md">
+    2
+    </a></td>
+    <td> Creating and testing plugins using generative AI from the Cloud-based development environment . </td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-3.md">
+    3
+    </a></td>
+    <td> Creating and testing plugins using the local development environment. This includes functionality for loading data from locally stored SDS datasets. </td>
+  </tr> 
+</tbody>
+</table>
+<p align="center">
+</p>
+<br/>
+
+<!--*
 
 #### Registering your plugin on the SPARC 
 
@@ -247,22 +296,8 @@ Chatbot
 
 Once the plugin has been created and tested, the code repository link can be submitted via the plugins page on the SPARC portal. This will allow the SPARC team to assess the submission, including performing security checks. Once approved, the plugin will automatically be built and integrated into the SPARC portal's plugin page for others to use. **Note For the Codeathon demonstration, the assessment of the subbmission is skipped and the plugin is automatically deployed into the portal in the sparc-plugins development enviroment**
 
-### Example SPARC portal plugins
-
-Example plugins have been created to demonstrate the capabilites of sparc-plugins. These are located in the "examples" folder of this repository. 
-They also come bundled with the sparc-plugins development environment. Once you have deployed the development environment, you can navigate to the plugins page of the local instance of the SPARC portal that runs within the development environment.
-
-1. Hello world
-
-2. Reusing and extending the existing Simulation Viewer SPARC portal component
-
-3. Using a Large Language Model (LLM) chatbot to explore SPARC portal resources including SPARC datasets and knowledge bases
-
-4. Viewing 3D medical images in sparc datasets and segmenting them using an existing pre-trained state-of-the-art AI annotation tool (NNInteractive)
 
 
-
-<!--*
 
 <table>
 <thead>
