@@ -1,15 +1,19 @@
 from pathlib import Path
 import uvicorn
-from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks
+from fastapi import FastAPI, Depends, HTTPException, BackgroundTasks, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 import json
 from datetime import datetime
-from typing import List
+from typing import List, Dict, Any
 from contextlib import asynccontextmanager
+from pydantic import BaseModel
 import uuid
 import threading
 import logging
+import requests
+import httpx
 from .models import (
     Plugin, PluginCreate, PluginResponse,
     PluginBuild, PluginBuildResponse,
@@ -18,8 +22,16 @@ from .models import (
 from .database import get_db, init_db
 from .build import PluginBuilder
 from .minio_client import get_minio_client
+from .utils import call_pennsieve_api
+from .logger import get_logger, configure_logging
 
-logger = logging.getLogger(__name__)
+configure_logging()
+logger = get_logger(__name__)
+
+class PromptRequest(BaseModel):
+    prompt: str
+
+PROMPTME_BASE_URL = "http://promptme:80"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -272,6 +284,74 @@ async def get_build_direct_url(build_id: str, db: Session = Depends(get_db)):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate direct URL: {str(e)}")
+
+@app.post("/generate-plugin")
+async def generate_plugin_with_prompt(request: PromptRequest, background_tasks: BackgroundTasks):
+    """Forward prompt to promptme service and handle the response"""
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f"{PROMPTME_BASE_URL}/generate",
+                params={"prompt": request.prompt},
+                timeout=30.0
+            )
+            
+            if response.status_code == 200:
+                promptme_response = response.json()
+                logger.info(f"Promptme response: {promptme_response}")
+                return {
+                    "message": "Plugin generation initiated",
+                    "status": "running",
+                    "promptme_response": promptme_response
+                }
+            else:
+                logger.error(f"Promptme returned error: {response.status_code} - {response.text}")
+                raise HTTPException(
+                    status_code=response.status_code,
+                    detail=f"Promptme service error: {response.text}"
+                )
+        
+    except httpx.RequestError as e:
+        logger.error(f"Failed to connect to promptme service: {e}")
+        raise HTTPException(
+            status_code=503,
+            detail="Promptme service unavailable"
+        )
+    except Exception as e:
+        logger.error(f"Error in generate_plugin_with_prompt: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal server error: {str(e)}"
+        )
+
+@app.api_route("/pennsieve/{path:path}", methods=["GET", "OPTIONS"])
+async def proxy_to_pensive(request: Request, path: str):
+    """Proxy requests to Pennsieve API using call_pennsieve_api"""
+    try:
+
+        data = None
+        if request.method in ["POST", "PUT", "PATCH"]:
+            body = await request.body()
+            if body:
+                try:
+                    data = json.loads(body)
+                except json.JSONDecodeError:
+                    raise HTTPException(status_code=400, detail="Invalid JSON in request body")
+        
+        result = call_pennsieve_api(path, method=request.method, data=data)
+        
+        return {
+            "message": f"Successfully proxied {request.method} request to Pennsieve API",
+            "path": path,
+            "data": result
+        }
+        
+    except Exception as e:
+        logger.error(f"Error in pensive proxy to Pennsieve: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Pennsieve API proxy error: {str(e)}"
+        )
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

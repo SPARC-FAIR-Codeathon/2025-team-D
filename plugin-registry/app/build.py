@@ -301,20 +301,27 @@ class PluginBuilder:
                 logger.info(f"Repository cloned to: {project_dir}")
             else:
                 logger.info("Step 1: Using local repository...")
+                logger.info(f"DEBUG: repo_url = '{repo_url}' (type: {type(repo_url)}, length: {len(repo_url)})")
+                logger.info(f"DEBUG: repo_url.startswith('./plugins/') = {repo_url.startswith('./plugins/')}")
+                logger.info(f"DEBUG: repo_url.startswith('/plugins/') = {repo_url.startswith('/plugins/')}")
                 # For local paths, map them to the mounted volume
                 # If the path starts with ./plugins or /plugins, use it as-is
                 # Otherwise, assume it's a relative path under /plugins
                 if repo_url.startswith('./plugins/'):
+                    logger.info("DEBUG: Taking ./plugins/ branch")
                     # Convert relative path to absolute within container
                     plugin_name = repo_url.replace('./plugins/', '')
                     project_dir = Path(f'/plugins/{plugin_name}')
                 elif repo_url.startswith('/plugins/'):
+                    logger.info("DEBUG: Taking /plugins/ branch")
                     # Already an absolute path in the container
                     project_dir = Path(repo_url)
                 else:
+                    logger.info("DEBUG: Taking else branch")
                     # Assume it's a plugin name/path under /plugins
                     # Remove leading ./ if present
                     clean_path = repo_url.lstrip('./')
+                    logger.info(f"DEBUG: clean_path = '{clean_path}'")
                     project_dir = Path(f'/plugins/{clean_path}')
                 
                 if not project_dir.exists():

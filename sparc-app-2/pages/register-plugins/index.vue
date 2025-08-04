@@ -13,10 +13,10 @@
           <div class="search-form">
             <el-form @submit.prevent="onSearchQuery">
               <el-row :gutter="8">
-                <el-col :sm="14" :xs="24">
+                <el-col :sm="10" :xs="24">
                   <el-input
                     v-model="searchQuery"
-                    placeholder="Enter search criteria"
+                    placeholder="Search plugins..."
                     size="large"
                     @keyup.enter="onSearchQuery"
                   >
@@ -27,13 +27,23 @@
                     </template>
                   </el-input>
                 </el-col>
-                <el-col :sm="6" :xs="12">
+                <el-col :sm="4" :xs="12">
                   <el-select v-model="sortBy" placeholder="Sort" size="large" @change="onSortChanged">
                     <el-option label="A-Z" value="alphabeticalAsc" />
                     <el-option label="Z-A" value="alphabeticalDesc" />
                   </el-select>
                 </el-col>
-                <el-col :sm="4" :xs="12">
+                <el-col :sm="5" :xs="12">
+                  <el-button 
+                    class="generate-btn" 
+                    type="success" 
+                    size="large"
+                    @click="openGenerateModal = true"
+                  >
+                    Generate Plugin
+                  </el-button>
+                </el-col>
+                <el-col :sm="5" :xs="12">
                   <el-button 
                     class="register-btn" 
                     type="primary" 
@@ -389,11 +399,57 @@
         </div>
       </div>
     </FancyModal>
+
+    <!-- Generate Plugin Modal -->
+    <FancyModal :visible="openGenerateModal" @close="closeGenerateModal">
+      <div class="plugin-generation-form">
+        <div class="form-header">
+          <h3 class="section-title">Generate Plugin with AI</h3>
+          <p class="form-subtitle">Describe your plugin idea and let AI generate it for you</p>
+        </div>
+
+        <div class="chat-container">
+          <el-form @submit.prevent="generatePlugin">
+            <el-form-item>
+              <el-input 
+                v-model="generateForm.prompt" 
+                type="textarea"
+                :rows="6"
+                placeholder="Describe what you want your plugin to do. For example: 'Create a plugin that analyzes SPARC datasets and generates visualization charts for neural data patterns...'"
+                size="large"
+              />
+            </el-form-item>
+
+            <div class="form-actions">
+              <el-button 
+                size="large" 
+                @click="closeGenerateModal"
+              >
+                Cancel
+              </el-button>
+              <el-button 
+                type="success" 
+                size="large"
+                :loading="isGenerating"
+                :disabled="!generateForm.prompt.trim() || isGenerating"
+                @click="generatePlugin"
+              >
+                {{ isGenerating ? 'Generating...' : 'Generate' }}
+              </el-button>
+            </div>
+
+            <p v-if="generateError" class="error-message">
+              {{ generateError }}
+            </p>
+          </el-form>
+        </div>
+      </div>
+    </FancyModal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRemoteAppStore } from '@/store/remoteStore'
 import FancyModal from '@/components/FancyModal/FancyModal.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -414,6 +470,7 @@ type Item = {
 
 // Reactive data
 const openModal = ref(false)
+const openGenerateModal = ref(false)
 const items = ref<Item[]>([])
 const searchQuery = ref('')
 const sortBy = ref('alphabeticalAsc')
@@ -443,6 +500,17 @@ const isSubmitting = ref(false)
 const submitError = ref('')
 const currentStep = ref(0)
 const submittedPlugin = ref<any>(null)
+
+// Generate Plugin form data
+const generateForm = ref({
+  prompt: ''
+})
+const isGenerating = ref(false)
+const generateError = ref('')
+
+// Auto-refresh functionality
+const autoRefreshInterval = ref<NodeJS.Timeout | null>(null)
+const REFRESH_INTERVAL = 10000 // 10 seconds
 
 const registrationForm = ref({
   name: '',
@@ -571,6 +639,57 @@ const closeModal = () => {
   submitError.value = ''
   currentStep.value = 0
   submittedPlugin.value = null
+}
+
+const closeGenerateModal = () => {
+  openGenerateModal.value = false
+  generateForm.value.prompt = ''
+  generateError.value = ''
+}
+
+const generatePlugin = async () => {
+  if (!generateForm.value.prompt.trim()) return
+  
+  isGenerating.value = true
+  generateError.value = ''
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/generate-plugin`, {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        prompt: generateForm.value.prompt
+      })
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData.detail || `API Error: ${response.status}`)
+    }
+
+    const result = await response.json()
+    console.log('Plugin generated successfully:', result)
+    
+    ElMessage({
+      message: 'Plugin generated successfully! Check your plugins list for the new plugin.',
+      type: 'success',
+      duration: 5000
+    })
+    
+    closeGenerateModal()
+    
+    // Refresh plugins list to show the newly generated plugin
+    await loadPluginsFromAPI()
+    
+  } catch (error: any) {
+    console.error('Plugin generation failed:', error)
+    generateError.value = error.message || 'Failed to generate plugin. Please try again.'
+  } finally {
+    isGenerating.value = false
+  }
 }
 
 
@@ -926,10 +1045,40 @@ const refreshPlugins = async () => {
   }
 }
 
+const startAutoRefresh = () => {
+  if (autoRefreshInterval.value) {
+    clearInterval(autoRefreshInterval.value)
+  }
+  
+  autoRefreshInterval.value = setInterval(async () => {
+    try {
+      // Silently refresh plugins and builds without showing loading state
+      await loadPluginsFromAPI()
+    } catch (error) {
+      console.warn('Auto-refresh failed:', error)
+    }
+  }, REFRESH_INTERVAL)
+}
+
+const stopAutoRefresh = () => {
+  if (autoRefreshInterval.value) {
+    clearInterval(autoRefreshInterval.value)
+    autoRefreshInterval.value = null
+  }
+}
+
 onMounted(async () => {
   // Load plugins from both metadata.json and API
   await loadPluginsFromMetadata()
   await loadPluginsFromAPI()
+  
+  // Start auto-refresh for checking build status and new plugins
+  startAutoRefresh()
+})
+
+onUnmounted(() => {
+  // Clean up interval when component is unmounted
+  stopAutoRefresh()
 })
 </script>
 
@@ -974,7 +1123,7 @@ onMounted(async () => {
   }
 }
 
-.register-btn {
+.register-btn, .generate-btn {
   width: 100%;
 }
 
@@ -1114,9 +1263,11 @@ onMounted(async () => {
   margin: 0 0 0.75rem 0;
   line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .plugin-meta {
@@ -1226,10 +1377,17 @@ onMounted(async () => {
 }
 
 // Form styles
-.plugin-registration-form {
+.plugin-registration-form, .plugin-generation-form {
   max-width: 100%;
   margin: 0;
   padding: 0 1rem;
+}
+
+.chat-container {
+  background: #fafbfc;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 1.5rem;
 }
 
 .stepper-container {

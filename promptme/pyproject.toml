@@ -1,16 +1,12 @@
 [project]
-name = "plugin-registry"
+name = "promptme"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi[standard]>=0.116.1",
-    "sqlalchemy>=2.0.0",
-    "alembic>=1.12.0",
-    "uvicorn[standard]>=0.24.0",
-    "sparc-me>=3.0.2",
-    "boto3>=1.34.0",
+    "openai>=1.98.0",
+    "python-dotenv>=1.1.1",
     "requests>=2.32.0",
-    "httpx>=0.24.0",
 ]
