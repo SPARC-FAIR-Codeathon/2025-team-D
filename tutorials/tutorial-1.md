@@ -1,13 +1,27 @@
-# Tutorial 1: Creating and testing plugins using the sparc-plugins cloud-based development environment
+# Tutorial 1: Creating and Testing Plugins Using the `sparc-plugins` Cloud-Based Development Environment
 
 ## Summary
-This includes functionality for loading data from curated SDS datasets in the SPARC portal.
+This tutorial demonstrates how to create, register, test, and manage plugins in the SPARC portal.  
 
-## Table of contents
-1. [Creating a plugin](#creating a plugin)
-2. [The problem](#the-problem)
+## Learning Outcomes
+By the end of this tutorial, you will be able to:
 
-## 1. Creating a plugin
+- Create a **Vue 3 Single Page Application (SPA)** to use as a SPARC plugin.  
+- Register the plugin in the **SPARC cloud-based development environment**.  
+- **Build, test, and rebuild** your plugin directly in the portal.  
+- Optionally **delete** your plugin from the portal.  
+- **Submit** your plugin for SPARC team review and approval.
+
+## Table of Contents
+1. [Creating a plugin](#1-creating-a-plugin)  
+2. [Registering your plugin on the cloud-based development environment](#2-registering-your-plugin-on-the-sparc-plugins-cloud-based-development-environment)  
+3. [Testing your plugin](#3-testing-your-plugin)  
+4. [Deleting your plugin (optional)](#4-deleting-your-plugin-optional)  
+5. [Submitting the plugin for review](#5-submitting-the-plugin-for-review-to-the-sparc-team)
+
+---
+
+## 1. Creating a Plugin
 
 > **Note:** Currently, only **Vue 3 web applications** are supported for plugin development.  
 > Future integration of **Micro Frontends** into the SPARC portal will allow plugins to be created using other frameworks, such as **React** and **Angular**.
@@ -17,50 +31,49 @@ This project serves as the foundation for deploying the plugin within the Vue 3 
 
 - A [plugin template](https://github.com/PrasadBabarendaGamage/2025-team-D/blob/main/resource/plugin-template/README.md) is available in the **`sparc-plugins`** repository to help you get started.  
 - Several [example plugins](https://github.com/PrasadBabarendaGamage/2025-team-D/blob/main/README.md#running-example-plugins) are also available.  
-  You can reuse or adapt these examples to create new plugins
+  You can reuse or adapt these examples to create new plugins.
 
-For the purposes of this tutorial, we will assume that the user has already created the source code for their plugins, and we will use the [Hello world example repository](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-hello-world/blob/main/README.md) for subseequent steps of this tutorial.
+For this tutorial, we will assume that the user has already created the source code for the plugin, and we will assume this corresponds to the [source code of the Hello World example](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-hello-world/) for the subsequent steps.
 
-Once the plugins source code has been placed in a repository, the cloud-based development environment can be used to automatically build and incorporate the plugin into the [plugins page](http://130.216.217.115:3000/register-plugins) on the SPARC portal.
+Once the plugin’s source code is in a repository, the `sparc-plugins` **cloud-based development environment** can automatically build and incorporate the plugin into the [SPARC portal plugins page](http://130.216.217.115:3000/register-plugins).
 
-## 2. Registering your plugin on the sparc-plugins cloud-based development environment
+---
 
-Select "Register Plugin" on the [plugins page](http://130.216.217.115:3000/register-plugins) of the SPARC portal to enter the details of your plugin, including the location of the repository which contains the source code. The Build Command field indicates the command that will be used to build the web app plugin. After, the checkbox for agreeing to have your plugin reviewed prior to it being published in the portal, you will be able to select "Submit plugin"
+## 2. Registering Your Plugin on the `sparc-plugins` Cloud-Based Development Environment
 
-Once registration is completed, select the "Build and Test Plugin" button. This will automatically build and dynamically link the plugin into the SPARC portal.
+1. Go to the [SPARC portal plugins page](http://130.216.217.115:3000/register-plugins).
+   INSERT SCREENSHOT
+3. Select **Register Plugin** to enter the details of your plugin, including the **repository URL**.
+   INSERT SCREENSHOT OF FILLED IN FORM
+5. Provide the **Build Command**, which will be used to build the web app plugin.  
+6. Check the **review agreement** checkbox to allow your plugin to be reviewed prior to publishing.  
+7. Select **Submit Plugin** to register your plugin.
 
-## 3. Testing your plugin
+After registration, select **Build and Test Plugin**.
+INSERT SCREENSHOT
+This will automatically build the plugin and dynamically link it into the SPARC portal.
 
-Select "Launch" on your plugin to activate it and test its functionality. You can trigger a rebuild of the plugin e.g. if you make modifications to your source code repository during testing by selecting te three vertical dots (⋮) options menu on your plugin and selecting "Rebuild".
+---
 
-## 4 Deleting your plugin (optional)
+## 3. Testing Your Plugin
 
-You can select the three vertical dots (⋮) options menu on your plugin and select delete to delete you app.
+1. Select **Launch** on your plugin to activate it and test its functionality.
+   INSERT SCREENSHOT 
+3. To rebuild the plugin (for example, after making changes to the source code repository), select the **three vertical dots (⋮)** options menu on your plugin and choose **Rebuild**.
+   INSERT SCREENSHOT WITH THE MENUE SHOWING WHEN YOU CLICK THE THREE DOTS
 
-## 5. Submitting the plugin for review to the SPARC team
+---
 
-Once you are satisfied with your plugin, you can submit it for review to the SPARC team by select the three vertical dots (⋮) options menu on your plugin and select "Submit to approval"
-botton.
+## 4. Deleting Your Plugin (Optional)
 
+1. Select the **three vertical dots (⋮)** options menu on your plugin.  
+2. Choose **Delete** to remove your plugin from the portal.
 
+---
 
-<!--*
+## 5. Submitting the Plugin for Review to the SPARC Team
 
+1. Once you are satisfied with your plugin, select the **three vertical dots (⋮)** options menu on your plugin.  
+2. Choose **Submit for Approval** to send it to the SPARC team for review.
 
-1. Building and integrating plugins into the SPARC portal using the sparc-plugins development enivronment (hello world)
-  
-2. Reusing and extending an existing SPARC portal component as a plugin (simulationvuer)
-
-Chatbot
-- Creating plugins that can access SPARC datasets
-
-5. Creating plugins that link to external services
-
-3. Rapidly prototype new plugins with generative AI
-
-#### Deploying your plugin for production
-
-Once the plugin has been created and tested, the code repository link can be submitted via the plugins page on the SPARC portal. This will allow the SPARC team to assess the submission, including performing security checks. Once approved, the plugin will automatically be built and integrated into the SPARC portal's plugin page for others to use. **Note For the Codeathon demonstration, the assessment of the subbmission is skipped and the plugin is automatically deployed into the portal in the sparc-plugins development enviroment**
-
--->
-
+[← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
