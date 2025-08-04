@@ -67,7 +67,7 @@ class PluginBuilder:
             logger.info(f"Running npm install in {project_dir}")
             
             result = subprocess.run(
-                ["npm", "install"],
+                ["npm", "install", "--force"],
                 cwd=project_dir,
                 capture_output=True,
                 text=True,
