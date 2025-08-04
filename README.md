@@ -166,9 +166,6 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 - Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
 - Provide API documentation.
 
-
-
-
 #### Pre-requisites 
 
 - Container service, for example:
@@ -180,13 +177,6 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 - Operating systems: 
   - Tested on:
     - Ubuntu 24.04
-
-### PyPI
-
-Here is the [link](https://pypi.org/project/sparc-plugins/) to our project on PyPI
-```
-pip install sparc-plugins
-```
 
 ### From source code
 
@@ -278,60 +268,41 @@ Documentation for how to use these plugins, along with the source code for the f
 <thead>
   <tr>
     <th> Tutorial</th>
-    <th> Description</th>
+    <th> Description</to>
+    <th> Development environment</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-1.md">
-    1
-    </a></td>
-    <td> Creating and testing plugins using the Cloud-based development environment. This includes functionality for loading data from curated SDS datasets in the SPARC portal. </td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-1.md">1</a></td>
+    <td> Creating and testing plugins using the Cloud-based development environment. </td>
+    <td> Cloud </td>
   </tr>
   <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-2.md">
-    2
-    </a></td>
-    <td> Creating and testing plugins using generative AI from the Cloud-based development environment. </td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-2.md">2</a></td>
+    <td> Reusing and extending an existing SPARC portal component (simulationvuer) as a plugin. This includes functionality for loading data from curated SDS datasets in the SPARC portal and linking to oSPARC services.</td>
+    <td> Cloud </td>
   </tr>
   <tr>
-    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-3.md">
-    3
-    </a></td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-3.md">3</a></td>
+    <td> Creating plugins that link to external services. </td>
+    <td> Cloud </td>
+  </tr>
+    <tr>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-4.md">4</a></td>
+    <td> Creating plugins using generative AI from the Cloud-based development environment. </td>
+    <td> Cloud </td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/main/tutorials/tutorial-5.md">5</a></td>
     <td> Creating and testing plugins using the local development environment. This includes functionality for loading data from locally stored SDS datasets. </td>
+    <td> Local </td>
   </tr> 
 </tbody>
 </table>
 <p align="center">
 </p>
 <br/>
-
-<!--*
-
-#### Registering your plugin on the SPARC 
-
-Once the sparc-plugins developement environment has been setup, a local instance of the por
-
-#### Creating and testing your plugins
-
-The tutorials below provide a guide for creation of SPARC portal plugins and how they can be dynamically integrated into the SPARC portal. These tutorials make use of the sparc-plugins development environment, which deploys a local instance of the SPARC portal as described in Section X.
-
-1. Building and integrating plugins into the SPARC portal using the sparc-plugins development enivronment (hello world)
-  
-2. Reusing and extending an existing SPARC portal component as a plugin (simulationvuer)
-
-Chatbot
-- Creating plugins that can access SPARC datasets
-
-5. Creating plugins that link to external services
-
-3. Rapidly prototype new plugins with generative AI
-
-#### Deploying your plugin for production
-
-Once the plugin has been created and tested, the code repository link can be submitted via the plugins page on the SPARC portal. This will allow the SPARC team to assess the submission, including performing security checks. Once approved, the plugin will automatically be built and integrated into the SPARC portal's plugin page for others to use. **Note For the Codeathon demonstration, the assessment of the subbmission is skipped and the plugin is automatically deployed into the portal in the sparc-plugins development enviroment**
-
--->
 
 ## Reporting issues 
 To report an issue or suggest a new feature, please use the [issues page](https://github.com/SPARC-FAIR-Codeathon/2025-team-D/issues). Issue templates are provided to allow users to report bugs, and documentation or feature requests. Please check existing issues before submitting a new one.
