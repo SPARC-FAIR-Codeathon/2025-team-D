@@ -1,0 +1,67 @@
+services:
+  plugin-registry:
+    build:
+      context: ./plugin-registry
+      dockerfile: Dockerfile
+    container_name: plugin-registry
+    ports:
+      - "8000:80"
+    environment:
+      - PYTHONPATH=/app
+      - DATABASE_PATH=/data/plugin_registry.db
+      - DATASET_DIR=/datasets
+      - MINIO_ENDPOINT=minio:9000
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+      - MINIO_BUCKET_NAME=plugins
+      - MINIO_USE_SSL=false
+    volumes:
+      - sparc_datasets:/datasets
+      - ./sparc-app-2/public:/app/portal/public
+      - ./plugins:/plugins
+    restart: unless-stopped
+    networks:
+      - sparc-network
+    depends_on:
+      - minio
+
+  sparc-app:
+    build:
+      context: ./sparc-app-2
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    networks:
+      - sparc-network
+    volumes:
+      - ./sparc-app-2/public:/app/public
+      - ./plugins:/plugins
+    env_file:
+      - ./sparc-app-2/.env
+    command: sh -c "rm -f /tmp/nitro/*.sock && yarn dev"
+
+  minio:
+    image: quay.io/minio/minio:latest
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    networks:
+      - sparc-network
+    volumes:
+      - 'minio_data:/data'
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+      - MINIO_SERVER_ACCESS_KEY=minioadmin
+      - MINIO_SERVER_SECRET_KEY=minioadmin
+    command: server /data --console-address ":9001" --address ":9000"
+
+networks:
+  sparc-network:
+    driver: bridge
+
+volumes:
+  sparc_datasets:
+  minio_data:
+    driver: local
