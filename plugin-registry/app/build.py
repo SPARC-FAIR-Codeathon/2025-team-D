@@ -205,7 +205,7 @@ class PluginBuilder:
         with open(umd_js_file_path, "r") as f:
             umd_js_content = f.read()
 
-        new_path_prefix = f"http://localhost:9000/plugins/{metadata['path']}/primary/"
+        new_path_prefix = f"http://{os.environ.get('HOST', 'localhost')}:9000/plugins/{metadata['path']}/primary/"
         umd_js_content = umd_js_content.replace(new_path_prefix, metadata["path"])
         
         with open(umd_js_file_path, "w") as f:
@@ -384,7 +384,7 @@ class PluginBuilder:
             # Determine the path based on whether it's a local plugin or remote
             if cloned_dir:
                 # Remote plugin - use MinIO URL
-                plugin_path = f"http://localhost:9000/plugins/{metadata['path']}/primary/my-app.umd.js"
+                plugin_path = f"http://{os.environ.get('HOST', 'localhost')}:9000/plugins/{metadata['path']}/primary/my-app.umd.js"
             else:
                 # Local plugin - use public directory path with metadata path
                 plugin_path = f"/{metadata['path']}/my-app.umd.js"

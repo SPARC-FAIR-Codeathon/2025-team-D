@@ -15,6 +15,7 @@ services:
       - MINIO_SECRET_KEY=minioadmin
       - MINIO_BUCKET_NAME=plugins
       - MINIO_USE_SSL=false
+      - mini_HOST=localhost
     volumes:
       - sparc_datasets:/datasets
       - ./sparc-app-2/public:/app/portal/public
@@ -39,6 +40,8 @@ services:
       - ./plugins:/plugins
     env_file:
       - ./sparc-app-2/.env
+    environment:
+      - PLUGIN_API=http://localhost:8000
     command: sh -c "rm -f /tmp/nitro/*.sock && yarn dev"
 
   minio:

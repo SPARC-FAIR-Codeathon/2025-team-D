@@ -440,7 +440,7 @@ const buildingPlugins = ref(new Set<string>())
 const isRefreshing = ref(false)
 
 // API Configuration
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = process.env.PLUGIN_API || 'http://localhost:8000'
 
 const remoteAppStore = useRemoteAppStore()
 const router = useRouter()
