@@ -225,7 +225,7 @@ git clone https://github.com/SPARC-FAIR-Codeathon/2025-team-D.git
 
 Example plugins have been created to demonstrate the capabilites of sparc-plugins. 
 
-They can be accessed by navigating to the [**Plugins page**](http://130.216.217.115:3000/) of the SPARC portal on the cloud-based development environment. Select the 'Launch' button next to the desired plugin to initiate it.
+They can be accessed by navigating to the [**Plugins page**](http://130.216.217.115:3000/register-plugins) of the SPARC portal on the cloud-based development environment. Select the 'Launch' button next to the desired plugin to initiate it.
 
 Documentation for how to use these plugins, along with the source code for the front end (client) and backend (API) of each of these plugins is located in the links below.
 
