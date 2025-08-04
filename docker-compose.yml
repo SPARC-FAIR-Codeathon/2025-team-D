@@ -20,6 +20,7 @@ services:
     volumes:
       - sparc_datasets:/datasets
       - ./sparc-app-2/public:/app/portal/public
+      - ./plugins:/plugins
     restart: unless-stopped
     networks:
       - sparc-network
@@ -37,6 +38,7 @@ services:
       - sparc-network
     volumes:
       - ./sparc-app-2/public:/app/public
+      - ./plugins:/plugins
     env_file:
       - ./sparc-app-2/.env
     command: sh -c "rm -f /tmp/nitro/*.sock && yarn dev"
@@ -56,6 +58,18 @@ services:
       - MINIO_SERVER_ACCESS_KEY=minioadmin
       - MINIO_SERVER_SECRET_KEY=minioadmin
     command: server /data --console-address ":9001" --address ":9000"
+
+  chatbot:
+    build:
+      context: ./plugins-backend/chatbot
+      dockerfile: Dockerfile
+    container_name: chatbot
+    ports:
+      - "8080:80"
+    networks:
+      - sparc-network
+    env_file:
+      - ./plugins-backend/chatbot/.env
 
 networks:
   sparc-network:
