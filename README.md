@@ -67,7 +67,7 @@ Despite its rich offering, the **SPARC portal currently lacks the ability for us
 - **Access these capabilities during dataset or model development**
 - **Enable non-technical users** to contribute or rapidly prototype new features
 
-Implementing any of the above requires expert software engineers familiar with the SPARC codebase. Changes necessitate taking the portal offline, updating the codebase, performing testing and review, and redeploying—causing significant disruption to the SPARC community.
+Implementing any of the above requires expert software engineers familiar with the SPARC codebase. Changes necessitate taking the portal offline, updating the codebase, performing testing and review, and redeploying—causing significant overhead to the SPARC community.
 
 ## Our solution - sparc-plugins
 
@@ -79,7 +79,7 @@ an ecosystem for dynamically integrating rich, interactive features into the SPA
 The **sparc-plugins** ecosystem currently supports the following capabilities:
 
 ### 🔌 Plugin Integration via the SPARC Portal
-A dedicated **Plugins Page** on the SPARC Portal where users can **browse and activate plugins**. These plugins have the ability to:
+A new dedicated **Plugins Page** on the SPARC Portal where users can **browse and activate plugins**. These plugins have the ability to:
 - **Access SPARC datasets and knowledge bases**
 - **Reuse, extend or modify existing data viewers and connectivity map visualisations**
 - **Link to oSPARC computational services**
