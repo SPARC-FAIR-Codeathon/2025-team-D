@@ -26,12 +26,12 @@ An ecosystem for dynamically integrating rich, interactive features into the SPA
 * [Introduction](#introduction)
 * [The problem](#the-problem)
 * [Our solution - sparc-plugins](#our-solution---sparc-plugins)
-* [Benefits](#benefits)
+* [Benefits of sparc-plugins](#benefits-of-sparc---plugins)
 * [Designed to enable FAIRness](#designed-to-enable-fairness)
+* [Future developments](#future-developments)
 * [Documentation](#documentation)
 * [Reporting issues](#reporting-issues)
 * [Contributing](#contributing)
-* [Future developments](#future-developments)
 * [Cite us](#cite-us)
 * [License](#license)
 * [Team](#team)
@@ -145,6 +145,20 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 - The Common Workflow Language (CWL) - is an open standard and specification used in the field of bioinformatics and scientific computing to describe and execute tools and workflows. CWL provides a way to define and share complex computational tasks and data processing pipelines in a portable and platform-independent manner. It uses a JSON-based format to describe input data, processing steps, and output data, allowing researchers to collaborate and share reproducible analyses across different computing environments. CWL aims to enhance the ease of defining, sharing, and executing computational workflows, particularly in the context of data-intensive scientific research.
 - EDAM ontology - EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within bioscientific data analysis and data management (including computational biology, bioinformatics, and bioimage informatics). EDAM includes topics, operations, types of data and data identifiers, and data formats, relevant in data analysis and data management in life sciences.
 - SPARC Dataset Structure
+
+-->
+
+
+## Future developments
+- Migrate to using microservices
+- Demonstrate how SPARC plugins can be integrated into portals on other platforms being developed around the world including the Auckland Bioengineering Institutes 12 Labours DigitalTWINS platform, which is being deployed within New Zealand's national public health system.
+<!--*
+- Standardise the description of intputs and outputs of these models and tools
+- Integrate our knowledge graph with other knowledgebases including the SPARC Anatomical Connectivity Maps and SPARC Functional Connectivity maps. This will enable workflows to be automatically assembled not only based on input/output relationships, but also based on anatomical and physiological connectivity.
+- Expand tool descriptions that can be accessed e.g. Workflow Description Language, Nextflow, Snakemake etc 
+- Link with Large Language Models to support more complex queries, for example to help visualise quantities of interest.
+- Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
+- Provide API documentation.
 
 -->
 
@@ -318,20 +332,6 @@ Fork this repository and submit a pull request to contribute. Before doing so, p
 * `/tutorials/` - Parent directory of tutorials for using sparc-plugins.
 * `/development_examples/` - Parent directory of examples that were created during the development of sparc-plugins.
 * `/docs/images/` - Images used in sparc-plugins tutorials.
-
--->
-
-
-
-## Future developments
-- Migrate to using microservices
-<!--*
-- Standardise the description of intputs and outputs of these models and tools
-- Integrate our knowledge graph with other knowledgebases including the SPARC Anatomical Connectivity Maps and SPARC Functional Connectivity maps. This will enable workflows to be automatically assembled not only based on input/output relationships, but also based on anatomical and physiological connectivity.
-- Expand tool descriptions that can be accessed e.g. Workflow Description Language, Nextflow, Snakemake etc 
-- Link with Large Language Models to support more complex queries, for example to help visualise quantities of interest.
-- Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
-- Provide API documentation.
 
 -->
 
