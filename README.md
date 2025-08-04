@@ -19,7 +19,6 @@ An ecosystem for dynamically integrating rich, interactive features into the SPA
 [license-shield]: https://img.shields.io/github/license/SPARC-FAIR-Codeathon/2025-team-D.svg?style=flat-square
 [license-url]: https://github.com/SPARC-FAIR-Codeathon/2025-team-D/blob/master/LICENSE
 [lines-of-code-shield]: https://img.shields.io/tokei/lines/github/SPARC-FAIR-Codeathon/2025-team-D
-[lines-of-code-url]: #
 
 ## Table of contents
 * [About](#about)
@@ -30,7 +29,7 @@ An ecosystem for dynamically integrating rich, interactive features into the SPA
 * [Benefits of sparc-plugins](#benefits-of-sparc---plugins)
 * [Designed to enable FAIRness](#designed-to-enable-fairness)
 * [Future developments](#future-developments)
-* [running example plugins](#running-example-plugins)
+* [Running example plugins](#running-example-plugins)
 * [Creating new plugins](#creating-new-plugins)
 * [Reporting issues](#reporting-issues)
 * [Contributing](#contributing)
@@ -109,7 +108,7 @@ A **container-based development environment** with the following additional feat
 - Plugins can load locally stored SDS datasets without them needing to be accessible from the SPARC portal
 - Enables integration of **external services** via existing APIs or custom backends to test advanced plugin features
 
-Examples are provided to demonstrate these capabilties.
+[Example plugins](#running-example-plugins) are provided to demonstrate these capabilties.
 
 ## Benefits of sparc-plugins
 
@@ -167,17 +166,14 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 - Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
 - Provide API documentation.
 
--->
 
-## Documentation 
 
-### Setting up the sparc-plugins development environment
 
 #### Pre-requisites 
 
 - Container service, for example:
   -  Docker vX.X or greater
-<!--*
+
 - [Git](https://git-scm.com/)
 - Python. Tested on:
    - 3.10
