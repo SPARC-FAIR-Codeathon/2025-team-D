@@ -148,10 +148,12 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 
 -->
 
-
 ## Future developments
-- Migrate to using microservices
-- Demonstrate how SPARC plugins can be integrated into portals on other platforms being developed around the world including the Auckland Bioengineering Institutes 12 Labours DigitalTWINS platform, which is being deployed within New Zealand's national public health system.
+- Adopt a micro frontend architecture to take modularity provided by sparc-plugins even further—enabling each plugin or UI module to be developed, deployed, and maintained as an independent application. In addition to existing benefits, this will:
+  - Allow users to use different frameworks or technologies for each plugin e.g. Vue, React, Angular.
+  - Improve scalability and maintainability by isolating concerns across components.
+  - Strengthen alignment with FAIR principles, especially interoperability and reusability, by promoting standardized interfaces and reusable UI modules.
+- Demonstrate how SPARC plugins can be integrated into portals on other platforms being developed around the world including the Auckland Bioengineering Institute's 12 Labours DigitalTWINS platform, which is being deployed within New Zealand's  public health system.
 <!--*
 - Standardise the description of intputs and outputs of these models and tools
 - Integrate our knowledge graph with other knowledgebases including the SPARC Anatomical Connectivity Maps and SPARC Functional Connectivity maps. This will enable workflows to be automatically assembled not only based on input/output relationships, but also based on anatomical and physiological connectivity.
