@@ -131,7 +131,7 @@ The sparc-plugins ecosystem enhances the SPARC portal by aligning with the FAIR 
 ### ⚡ Rapid Innovation
 - Accelerates development and testing of new features without disrupting the main portal.
 - Encourages experimentation with advanced technologies like AI, 3D visualization, and segmentation.
-- 
+  
 ### 👥 Inclusive & Scalable
 - Reduces reliance on core engineering teams, enabling broader participation and faster iteration.
 - Empowers non-technical users to contribute via generative AI tools.
