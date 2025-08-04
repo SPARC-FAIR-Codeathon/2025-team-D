@@ -1,18 +1,18 @@
 # Tutorial X: [Title of Tutorial]
 
+## Summary
+Brief description of what this tutorial covers and its purpose.  
+For example:  
+This tutorial guides you through creating and testing plugins using the SPARC `sparc-plugins` cloud-based development environment.
+
+---
+
 ## Learning Outcomes
 By the end of this tutorial, you will be able to:
 
 - [Learning outcome 1]
 - [Learning outcome 2]
 - [Learning outcome 3]
-
----
-
-## Summary
-Brief description of what this tutorial covers and its purpose.  
-For example:  
-This tutorial guides you through creating and testing plugins using the SPARC `sparc-plugins` cloud-based development environment.
 
 ---
 
