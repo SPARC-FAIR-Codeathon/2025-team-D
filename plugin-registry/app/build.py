@@ -288,6 +288,17 @@ class PluginBuilder:
                 logger.info("Path in umd.js file replaced successfully")
             else:
                 logger.info("Step 5: Skipping path replacement for local plugin")
+
+            
+                        # read config file in the cloned directory
+            config_file = project_dir / "config.sparc.json"
+            config = {}
+            if config_file.exists():
+                logger.info(f"Reading config from {config_file}")
+                with open(config_file, "r") as f:
+                    config = json.loads(f.read())
+            else:
+                logger.warning(f"No config.sparc.json file found in {project_dir}")
             
             # Step 5: Create SPARC-ME dataset (only for remote repos)
             dataset_dir = None
@@ -378,12 +389,7 @@ class PluginBuilder:
                 # Local plugin - use public directory path with metadata path
                 plugin_path = f"/{metadata['path']}/my-app.umd.js"
 
-            # read config file in the cloned directory
-            config_file = project_dir / "config.sparc.json"
-            config = {}
-            if config_file.exists():
-                with open(config_file, "r") as f:
-                    config = json.loads(f.read())
+
             
             component_entry = {
                 "id": plugin_id,
