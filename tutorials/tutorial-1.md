@@ -45,7 +45,7 @@ Once the plugin’s source code is in a repository, the `sparc-plugins` **cloud-
 <img width="1264" height="910" alt="Screenshot from 2025-08-05 10-43-18" src="https://github.com/user-attachments/assets/165db9bb-1d8d-4049-b857-9ec001adefc5" />
 
 2. Select **Register Plugin** to enter the details of your plugin, including the **repository URL**.
-<img width="1264" height="910" alt="Screenshot from 2025-08-05 10-43-24" src="https://github.com/user-attachments/assets/d92c6fe9-fa45-46a3-8d6d-95bf287c613e" />
+<img width="1263" height="909" alt="Screenshot from 2025-08-05 11-21-16" src="https://github.com/user-attachments/assets/7f8655d5-4fbe-4368-854f-836e6de95625" />
 
 3. Provide the **Build Command**, which will be used to build the web app plugin.  
 4. Check the **review agreement** checkbox to allow your plugin to be reviewed prior to publishing.  
@@ -79,5 +79,6 @@ This will automatically build the plugin and dynamically link it into the SPARC 
 2. Choose **Submit for Approval** to send it to the SPARC team for review.
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
