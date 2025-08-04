@@ -237,34 +237,18 @@
           <div class="form-section">
             <h3 class="section-title">Plugin Information</h3>
             
-            <!-- Required Fields Row: Expose and URL side by side -->
-            <div class="form-row">
-              <div class="form-column">
-                <el-form-item prop="plugin_metadata.expose" label="Expose Name *">
-                  <el-input 
-                    v-model="registrationForm.plugin_metadata.expose" 
-                    placeholder="MyPluginApp"
-                    size="large"
-                    @input="updatePath"
-                  />
-                  <div class="form-help">
-                    JavaScript module name
-                  </div>
-                </el-form-item>
-              </div>
-
-              <div class="form-column">
-                <el-form-item prop="repository_url" label="Source URL *">
-                  <el-input 
-                    v-model="registrationForm.repository_url" 
-                    placeholder="https://github.com/user/repo.git or ./plugins/MyApp"
-                    size="large"
-                  />
-                  <div class="form-help">
-                    Git repository URL or local path
-                  </div>
-                </el-form-item>
-              </div>
+            <!-- Source URL Field -->
+            <div class="form-full-width">
+              <el-form-item prop="repository_url" label="Source URL *">
+                <el-input 
+                  v-model="registrationForm.repository_url" 
+                  placeholder="https://github.com/user/repo.git or ./plugins/MyApp"
+                  size="large"
+                />
+                <div class="form-help">
+                  Git repository URL or local path
+                </div>
+              </el-form-item>
             </div>
 
             <!-- Optional Fields Row: Name, Author, Version -->
@@ -416,7 +400,6 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 
 type Item = {
     name: string;
-    path: string;
     expose: string;
     description: string;
     id?: string;
@@ -468,8 +451,6 @@ const registrationForm = ref({
   author: '',
   repository_url: '',
   plugin_metadata: {
-    expose: '',
-    path: '',
     build_command: 'npm run build'
   },
   agreeToTerms: false
@@ -498,14 +479,6 @@ const formRules = {
           callback()
         }
       },
-      trigger: 'blur'
-    }
-  ],
-  'plugin_metadata.expose': [
-    { required: true, message: 'Please enter the expose name', trigger: 'blur' },
-    {
-      pattern: /^[A-Za-z][A-Za-z0-9_]*$/,
-      message: 'Expose name must start with a letter and contain only letters, numbers, and underscores',
       trigger: 'blur'
     }
   ],
@@ -538,7 +511,7 @@ const filteredItems = computed(() => {
     filtered = filtered.filter(item => 
       item.name.toLowerCase().includes(query) ||
       (item.description && item.description.toLowerCase().includes(query)) ||
-      item.expose.toLowerCase().includes(query)
+      (item.author && item.author.toLowerCase().includes(query))
     )
   }
 
@@ -569,7 +542,6 @@ const paginatedItems = computed(() => {
 const isFormValid = computed(() => {
   const form = registrationForm.value
   return (
-    form.plugin_metadata.expose.trim() !== '' &&
     form.repository_url.trim() !== '' &&
     form.agreeToTerms
   )
@@ -601,10 +573,6 @@ const closeModal = () => {
   submittedPlugin.value = null
 }
 
-const updatePath = () => {
-  // Automatically set path to the same value as expose
-  registrationForm.value.plugin_metadata.path = registrationForm.value.plugin_metadata.expose.toLowerCase()
-}
 
 const resetForm = () => {
   registrationForm.value = {
@@ -614,8 +582,6 @@ const resetForm = () => {
     author: '',
     repository_url: '',
     plugin_metadata: {
-      expose: '',
-      path: '',
       build_command: 'npm run build'
     },
     agreeToTerms: false
@@ -646,8 +612,6 @@ const submitRegistration = async () => {
       author: registrationForm.value.author,
       repository_url: registrationForm.value.repository_url,
       plugin_metadata: {
-        expose: registrationForm.value.plugin_metadata.expose,
-        path: registrationForm.value.plugin_metadata.path,
         build_command: registrationForm.value.plugin_metadata.build_command
       }
     }
@@ -888,7 +852,6 @@ const loadPluginsFromAPI = async () => {
           version: plugin.version,
           author: plugin.author,
           expose: plugin.plugin_metadata?.expose || '',
-          path: plugin.build_url || '',
           status: buildStatus,
           source: 'api' as const,
           created_at: plugin.created_at,
@@ -899,8 +862,8 @@ const loadPluginsFromAPI = async () => {
       await loadPluginsFromMetadata()
       
       // Filter out API plugins that already exist in metadata (metadata takes priority)
-      const metadataExposes = new Set(items.value.filter(p => p.source === 'metadata').map(p => p.expose))
-      const uniqueApiPlugins = formattedPlugins.filter(plugin => !metadataExposes.has(plugin.expose))
+      const metadataNames = new Set(items.value.filter(p => p.source === 'metadata').map(p => p.name))
+      const uniqueApiPlugins = formattedPlugins.filter(plugin => !metadataNames.has(plugin.name))
       
       items.value = [...items.value, ...uniqueApiPlugins]
     }

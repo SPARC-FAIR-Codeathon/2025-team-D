@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import shutil
 import tempfile
@@ -210,7 +211,64 @@ class PluginBuilder:
         
         with open(umd_js_file_path, "w") as f:
             f.write(umd_js_content)
+
+    def unique_name(self, name: str) -> str:
+        """Make the name unique by adding a random string to the end"""
+        clean = re.sub(r'[^a-zA-Z0-9]', '', name)
+        return f"{clean}_{uuid.uuid4().hex[:8]}"
     
+    def replace_vite_name(self, file_path: str, new_name: str) -> bool:
+        """
+        Replace the name field in a Vite config file.
+        """
+        # Regex pattern to match name field with single or double quotes
+        name_pattern = re.compile(r'name:\s*["\']([^"\']*)["\']', re.IGNORECASE)
+        
+        try:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                content = file.read()
+            
+            # Check if name field exists
+            if not name_pattern.search(content):
+                print(f"No 'name' field found in {file_path}")
+                return False
+            
+            # Replace the name field, preserving the quote style
+            def replacer(match):
+                full_match = match.group(0)
+                old_name = match.group(1)
+                
+                # Determine quote style from the original
+                if '"' in full_match:
+                    return f'name: "{new_name}"'
+                else:
+                    return f"name: '{new_name}'"
+            
+            new_content = name_pattern.sub(replacer, content)
+            
+            # Write back to file
+            with open(file_path, 'w', encoding='utf-8') as file:
+                file.write(new_content)
+            
+            print(f" Updated name in {file_path}")
+            return True
+            
+        except Exception as e:
+            print(f"Error processing {file_path}: {e}")
+            return False
+    def update_vite_config(self, project_dir: Path, metadata: Dict[str, Any]):
+        """Update the vite.config.js file to use the unique name"""
+        vite_config_js = project_dir / "vite.config.js"
+        vite_config_ts = project_dir / "vite.config.ts"
+        if vite_config_js.exists():
+            vite_config_file = vite_config_js
+        elif vite_config_ts.exists():
+            vite_config_file = vite_config_ts
+        else:
+            raise RuntimeError("vite.config.js or vite.config.ts file not found")
+        
+        self.replace_vite_name(vite_config_file, metadata["path"])
+        
     def build_plugin(self, 
                     plugin: Dict[str, Any]) -> Dict[str, Any]:
         """Complete plugin build process"""
@@ -226,7 +284,12 @@ class PluginBuilder:
         author = plugin.get("author", "unknown")
         description = plugin.get("description", "No description provided")
         cloned_dir = None
+
+
         try:
+            plugin_unique_name = self.unique_name(plugin_name)
+            metadata["path"] = plugin_unique_name
+            metadata["expose"] = plugin_unique_name
             # Step 0: Check for existing metadata
             logger.info("Step 0: Checking for existing plugin metadata...")
             
@@ -266,6 +329,11 @@ class PluginBuilder:
                 raise RuntimeError("No package.json found - not an npm project")
             logger.info("npm project detected")
             
+
+            # Step 2.1: update vite.config.js
+            logger.info("Step 2.1: Updating vite.config.js...")
+            self.update_vite_config(project_dir, metadata)
+            logger.info("vite.config.js updated successfully")
 
             # Step 3: npm install
             logger.info("Step 3: Running npm install...")
