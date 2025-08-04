@@ -90,13 +90,12 @@ A new dedicated **Plugins Page** on the SPARC Portal where users can **browse an
 - **Process data to generate new datasets**
 
 ### 🚀 Cloud-Based Plugin Development Environment
-Offers an **automated and streamlined experience for plugin development, testing, and review** directly on the Plugins Page of the SPARC portal.
-**Register and test new plugins** 
+Provides an **automated and streamlined experience for plugin development, registration, testing, and review** directly through the Plugins Page of the SPARC Portal.
 - Create new plugins by reusing existing plugin examples
-- Plugins can be registered by referencing their code repository 
-- Plugins are **automatically integrated** into the portal for testing
-- Plugins can be submitted to the SPARC development team for review
-- Approved plugins may also be **merged into the main SPARC codebase** for long-term support
+- Register plugins by referencing their code repositories directly on the Plugins Page
+- Plugins are **automatically built and integrated** into the portal for testing
+- Submit plugins to the SPARC development team for review
+- Approved plugins may be **merged into the main SPARC codebase** for long-term support
 
 ### 🤖 Generative AI Support
 Integration of **generative AI tools** to empower **non-technical users** to rapidly prototype and test new plugins directly within the SPARC portal
