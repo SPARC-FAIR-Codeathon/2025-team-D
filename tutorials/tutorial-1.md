@@ -42,12 +42,14 @@ Once the plugin’s source code is in a repository, the `sparc-plugins` **cloud-
 ## 2. Registering Your Plugin on the `sparc-plugins` Cloud-Based Development Environment
 
 1. Go to the [SPARC portal plugins page](http://130.216.217.115:3000/register-plugins).
-   <img width="1812" height="916" alt="Screenshot from 2025-08-05 10-17-31" src="https://github.com/user-attachments/assets/09c44e9d-66e1-4f4d-82fc-6cea74b445ad" />
-3. Select **Register Plugin** to enter the details of your plugin, including the **repository URL**.
-   INSERT SCREENSHOT OF FILLED IN FORM
-5. Provide the **Build Command**, which will be used to build the web app plugin.  
-6. Check the **review agreement** checkbox to allow your plugin to be reviewed prior to publishing.  
-7. Select **Submit Plugin** to register your plugin.
+<img width="1264" height="910" alt="Screenshot from 2025-08-05 10-43-18" src="https://github.com/user-attachments/assets/165db9bb-1d8d-4049-b857-9ec001adefc5" />
+
+2. Select **Register Plugin** to enter the details of your plugin, including the **repository URL**.
+<img width="1264" height="910" alt="Screenshot from 2025-08-05 10-43-24" src="https://github.com/user-attachments/assets/d92c6fe9-fa45-46a3-8d6d-95bf287c613e" />
+
+3. Provide the **Build Command**, which will be used to build the web app plugin.  
+4. Check the **review agreement** checkbox to allow your plugin to be reviewed prior to publishing.  
+5. Select **Submit Plugin** to register your plugin.
 
 After registration, select **Build and Test Plugin**.
 INSERT SCREENSHOT
@@ -77,4 +79,5 @@ This will automatically build the plugin and dynamically link it into the SPARC 
 2. Choose **Submit for Approval** to send it to the SPARC team for review.
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
