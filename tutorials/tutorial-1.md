@@ -6,9 +6,9 @@ This tutorial demonstrates how to create, register, test, and manage plugins in 
 ## Learning Outcomes
 By the end of this tutorial, you will be able to:
 
-- Create a **Vue 3 Single Page Application (SPA)** to use as a SPARC plugin.  
+- Use a **Vue 3 Single Page Application (SPA)** to create a SPARC plugin.  
 - Register the plugin in the **SPARC cloud-based development environment**.  
-- **Build, test, and rebuild** your plugin directly in the portal.  
+- **Build, test, and rebuild** your plugin directly in the SPARC portal.  
 - Optionally **delete** your plugin from the portal.  
 - **Submit** your plugin for SPARC team review and approval.
 
