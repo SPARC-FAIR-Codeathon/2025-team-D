@@ -26,10 +26,12 @@ An ecosystem for dynamically integrating rich, interactive features into the SPA
 * [Introduction](#introduction)
 * [The problem](#the-problem)
 * [Our solution - sparc-plugins](#our-solution---sparc-plugins)
+* [Supported features](#supported-features)
 * [Benefits of sparc-plugins](#benefits-of-sparc---plugins)
 * [Designed to enable FAIRness](#designed-to-enable-fairness)
 * [Future developments](#future-developments)
-* [Documentation](#documentation)
+* [running example plugins](#running-example-plugins)
+* [Creating new plugins](#creating-new-plugins)
 * [Reporting issues](#reporting-issues)
 * [Contributing](#contributing)
 * [Cite us](#cite-us)
@@ -109,7 +111,7 @@ A **container-based development environment** with the following additional feat
 
 Examples are provided to demonstrate these capabilties.
 
-## 🎯 Benefits of sparc-plugins
+## Benefits of sparc-plugins
 
 The sparc-plugins ecosystem enhances the SPARC portal by aligning with the FAIR principles and enabling a more dynamic, inclusive, and scalable research environment. This will increase the impact of SPARC community developements.
 
@@ -223,21 +225,58 @@ git clone https://github.com/SPARC-FAIR-Codeathon/2025-team-D.git
 
 -->
 
-### Example SPARC portal plugins
+### Running example plugins
 
-Example plugins have been created to demonstrate the capabilites of sparc-plugins. They can be accessed by navigating to the [**Plugins page**](http://130.216.217.115:3000/) of the SPARC portal on the cloud-based development environment. Select the 'Launch' button next to the desired plugin to initiate it.
- 
-Note: for the purposes of the Codeathon, the cloud-based development environment has been hosted on [ARDC Nectar Research Cloud](https://ardc.edu.au/services/ardc-nectar-research-cloud/).
+Example plugins have been created to demonstrate the capabilites of sparc-plugins. 
 
-1. Hello world ([Documentation](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-api/blob/main/README.md))
+They can be accessed by navigating to the [**Plugins page**](http://130.216.217.115:3000/) of the SPARC portal on the cloud-based development environment. Select the 'Launch' button next to the desired plugin to initiate it.
 
-2. Reusing and extending the existing Simulation Viewer SPARC portal component ([Documentation](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-simulationvuer)
+Documentation for how to use these plugins, along with the source code for the front end (client) and backend (API) of each of these plugins is located in the links below.
 
-3. Using a Large Language Model (LLM) chatbot to explore SPARC portal resources including SPARC datasets and knowledge bases ([Documentation](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-client/blob/main/README.md)
+**Note**: for the purposes of the Codeathon, the cloud-based development environment has been hosted on the [ARDC Nectar Research Cloud](https://ardc.edu.au/services/ardc-nectar-research-cloud/). Any backend API required for the clients have been hosted externally as described in the example's API documentation below.
 
-4. Viewing 3D medical images in sparc datasets and using annotating them using an existing pre-trained state-of-the-art AI annotation tool ([Documentation]()
+<table>
+<thead>
+  <tr>
+    <th> Examples</th>
+    <th> Description</th>
+    <th> Documentation</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>1</td>
+    <td> Hello world. </td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-hello-world/blob/main/README.md">Client</a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td> Reusing and extending the existing Simulation Viewer SPARC portal component. </td>
+    <td><a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-simulationvuer">Client</a></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td> Using a Large Language Model (LLM) chatbot to explore SPARC portal resources including SPARC datasets and knowledge bases. </td>
+    <td>
+      <a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-client/blob/main/README.md">Client</a>,
+      <a href="https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-api/blob/main/README.md">API</a>
+    </td>
+  </tr> 
+  <tr>
+    <td>4</td>
+    <td> Viewing 3D medical images in sparc datasets and annotating them using an existing pre-trained state-of-the-art AI annotation tool. </td>
+    <td>
+      <a href="">Client</a>,
+      <a href="">API</a>
+    </td>
+  </tr> 
+</tbody>
+</table>
+<p align="center">
+</p>
+<br/>
 
-### Using sparc-plugins to create new plugins
+### Creating new plugins
 
 <table>
 <thead>
