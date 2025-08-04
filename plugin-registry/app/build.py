@@ -377,6 +377,13 @@ class PluginBuilder:
             else:
                 # Local plugin - use public directory path with metadata path
                 plugin_path = f"/{metadata['path']}/my-app.umd.js"
+
+            # read config file in the cloned directory
+            config_file = project_dir / "config.sparc.json"
+            config = {}
+            if config_file.exists():
+                with open(config_file, "r") as f:
+                    config = json.loads(f.read())
             
             component_entry = {
                 "id": plugin_id,
@@ -389,6 +396,7 @@ class PluginBuilder:
                 "author": author,
                 "repository_url": repo_url,
                 "is_local": not bool(cloned_dir),  # Flag to indicate if it's a local plugin
+                "config": config
             }
             
             component_exists = False
