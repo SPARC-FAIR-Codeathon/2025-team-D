@@ -15,7 +15,7 @@ services:
       - MINIO_SECRET_KEY=minioadmin
       - MINIO_BUCKET_NAME=plugins
       - MINIO_USE_SSL=false
-      - mini_HOST=localhost
+      - HOST=localhost
     volumes:
       - sparc_datasets:/datasets
       - ./sparc-app-2/public:/app/portal/public
