@@ -234,8 +234,7 @@ The tutorials below provide a guide for creation of SPARC portal plugins and how
 
 1. Building and integrating plugins into the SPARC portal using the sparc-plugins development enivronment (hello world)
   
-
-3. Reusing and extending an existing SPARC portal component as a plugin  (simulationvuer)
+2. Reusing and extending an existing SPARC portal component as a plugin (simulationvuer)
 
 Chatbot
 - Creating plugins that can access SPARC datasets
@@ -257,11 +256,10 @@ They also come bundled with the sparc-plugins development environment. Once you 
 
 2. Reusing and extending the existing Simulation Viewer SPARC portal component
 
-3. Viewing 3D medical images in sparc datasets and segmenting them using an existing pre-trained state-of-the-art AI annotation tool (NNInteractive)
+3. Using a Large Language Model (LLM) chatbot to explore SPARC portal resources including SPARC datasets and knowledge bases
 
-4. Using a Large Language Model (LLM) chatbot to explore SPARC portal resources including SPARC datasets and knowledge bases
+4. Viewing 3D medical images in sparc datasets and segmenting them using an existing pre-trained state-of-the-art AI annotation tool (NNInteractive)
 
-5. Converting SPARC scaffold models to common formats used for animation (GLTF)
 
 
 <!--*
