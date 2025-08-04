@@ -78,7 +78,7 @@ an ecosystem for dynamically integrating rich, interactive features into the SPA
 The **sparc-plugins** ecosystem currently supports the following capabilities:
 
 ### 🔌 Plugin Integration via the SPARC Portal
-A dedicated **Plugins Page** on the SPARC Portal where users can **register, browse, and activate plugins**. These plugins can:
+A dedicated **Plugins Page** on the SPARC Portal where users can **browse and activate plugins**. These plugins have the ability to:
 - **Access SPARC datasets and knowledge bases**
 - **Reuse, extend or modify existing data viewers and connectivity map visualisations**
 - **Link to oSPARC computational services**
@@ -88,23 +88,23 @@ A dedicated **Plugins Page** on the SPARC Portal where users can **register, bro
   - Advanced image segmentation tools
 - **Process data to generate new datasets**
 
-### 🧪 Plugin Development Environment
-A **container-based development environment** for rapid prototyping and testing of web plugins that are compatible with the SPARC portal:
-- Offers a **streamlined experience for plugin development and testing** by providing automated building and deployment of plugins
-- Includes a **local deployment of the SPARC Portal**
-- Supports **access to plugin source code** from repositories or source code stored locally
-- Enables integration of **external services** via existing APIs or custom backends to support advanced plugin features
+### 🚀 Automated Cloud-Based Plugin Development
+Offers a **streamlined experience for plugin development, testing, and review** directly on the Plugins Page of the SPARC portal.
+**Register and test new plugins** 
+- Create new plugins by reusing existing plugin examples
+- Plugins can be registered by referencing their code repository 
+- Plugins are **automatically integrated** into the portal for testing
+- Plugins can be submitted to the SPARC development team for review
+- Approved plugins may also be **merged into the main SPARC codebase** for long-term support
 
 ### 🤖 Generative AI Support
-Integration of **generative AI tools** to empower **non-technical users** to:
-- Contribute new ideas
-- Rapidly prototype and test new features
+Integration of **generative AI tools** to empower **non-technical users** to rapidly prototype and test new plugins directly within the SPARC portal
 
-### 🚀 Plugin Deployment Workflow
-A **production deployment process** via the plugin registration page:
-- Users can **submit plugins** to the SPARC development team for review
-- Upon approval, plugins are **automatically integrated** into the portal via the Plugins Page
-- Approved plugins may also be **merged into the main SPARC codebase** for long-term support
+### 🧪 Local Plugin Development Environment
+A **container-based development environment** for advanced users with the following additional features:
+- Includes a **local deployment of the SPARC Portal**
+- Plugins can be registed by referencing source code stored locally
+- Enables integration of **external services** via existing APIs or custom backends to support advanced plugin features
 
 Examples are provided to demonstrate these capabilties.
 
@@ -117,8 +117,8 @@ The sparc-plugins ecosystem enhances the SPARC portal by aligning with the FAIR 
 - Improves discoverability of data and tools through plugin-driven interfaces.
 
 ### 📥 Accessible
-- Allows users to interact with datasets and models through rich, intuitive plugins.
-- Supports integration of external services and viewers without requiring portal downtime.
+- Allows users to interact with datasets and models through feature rich plugins.
+- Supports integration of external services without requiring portal downtime.
 
 ### 🔗 Interoperable
 - Facilitates seamless integration with oSPARC and other computational platforms via APIs.
@@ -149,6 +149,8 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 -->
 
 ## Future developments
+- Making the sparc-plugin developement environment available directly from within oSPARC.
+- Use sparc-flow to store plugins descriptions in a standard tool description language such as the common workflow language, enalbing them to be integrated into simulation workflows.
 - Adopt a micro frontend architecture to take modularity provided by sparc-plugins even further—enabling each plugin or UI module to be developed, deployed, and maintained as an independent application. In addition to existing benefits, this will:
   - Allow users to use different frameworks or technologies for each plugin e.g. Vue, React, Angular.
   - Improve scalability and maintainability by isolating concerns across components.
@@ -230,20 +232,17 @@ Once the sparc-plugins developement environment has been setup, a local instance
 
 The tutorials below provide a guide for creation of SPARC portal plugins and how they can be dynamically integrated into the SPARC portal. These tutorials make use of the sparc-plugins development environment, which deploys a local instance of the SPARC portal as described in Section X.
 
-1. Building plugins using:
-
-   1. the sparc-plugins development enivronment
-   2. Osparc
+1. Building and integrating plugins into the SPARC portal using the sparc-plugins development enivronment (hello world)
   
-2. Integrating plugins into the SPARC portal
 
-3. Creating plugins that can access SPARC datasets
+3. Reusing and extending an existing SPARC portal component as a plugin  (simulationvuer)
 
-4. Reusing and extending an existing SPARC portal component as a plugin
+Chatbot
+- Creating plugins that can access SPARC datasets
 
 5. Creating plugins that link to external services
 
-6. Rapidly prototype new plugins with generative AI
+3. Rapidly prototype new plugins with generative AI
 
 #### Deploying your plugin for production
 
