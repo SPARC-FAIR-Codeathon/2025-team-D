@@ -78,7 +78,7 @@ an ecosystem for dynamically integrating rich, interactive features into the SPA
 The **sparc-plugins** ecosystem currently supports the following capabilities:
 
 ### 🔌 Plugin Integration via the SPARC Portal
-A dedicated **Plugins Page** on the SPARC Portal where users can **Register, browse, and activate plugins**. These plugins can:
+A dedicated **Plugins Page** on the SPARC Portal where users can **register, browse, and activate plugins**. These plugins can:
 - **Access SPARC datasets and knowledge bases**
 - **Reuse, extend or modify existing data viewers and connectivity map visualisations**
 - **Link to oSPARC computational services**
