@@ -70,7 +70,6 @@
               :key="index" 
               class="plugin-card"
               :data-launchable="item.source === 'metadata'"
-              @click="handleCardClick(item)"
             >
               <div class="plugin-card-content">
                 <div class="plugin-header">
@@ -108,10 +107,10 @@
                       <el-button 
                         v-if="item.source === 'api' && item.status === 'completed'"
                         size="small" 
-                        disabled
-                        @click.stop
+                        type="success"
+                        @click.stop="submitToApproval(item)"
                       >
-                        Built
+                        Submit to Approval
                       </el-button>
                       <el-button 
                         v-if="item.source === 'api' && item.status === 'failed'"
@@ -120,7 +119,7 @@
                         :loading="buildingPlugins.has(item.id!)"
                         @click.stop="buildPlugin(item)"
                       >
-                        {{ buildingPlugins.has(item.id!) ? 'Rebuilding...' : 'Retry Build' }}
+                        {{ buildingPlugins.has(item.id!) ? 'Rebuilding...' : 'Rebuild' }}
                       </el-button>
                       
                       <!-- Three-dot menu for plugins -->
@@ -129,20 +128,31 @@
                         placement="bottom-end"
                         @click.stop
                       >
-                        <el-button 
-                          class="plugin-menu-btn"
-                          size="small"
-                          text
-                          @click.stop
-                        >
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="5" r="2" fill="currentColor"/>
-                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
-                            <circle cx="12" cy="19" r="2" fill="currentColor"/>
-                          </svg>
-                        </el-button>
+                        <span class="el-dropdown-link">
+                          <el-button 
+                            class="plugin-menu-btn"
+                            size="small"
+                            text
+                          >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="5" r="2" fill="currentColor"/>
+                              <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                              <circle cx="12" cy="19" r="2" fill="currentColor"/>
+                            </svg>
+                          </el-button>
+                        </span>
                         <template #dropdown>
                           <el-dropdown-menu>
+                            <el-dropdown-item 
+                              @click="buildPlugin(item)"
+                            >
+                            Rebuild Plugin
+                            </el-dropdown-item>
+                            <el-dropdown-item 
+                              @click="submitToApproval(item)"
+                            >
+                              Submit to Approval
+                            </el-dropdown-item>
                             <el-dropdown-item 
                               @click="deletePlugin(item)"
                               class="delete-menu-item"
@@ -208,8 +218,7 @@
         <div class="stepper-container">
           <el-steps :active="currentStep" finish-status="success" align-center>
             <el-step title="Registration" description="Fill out plugin details" />
-            <el-step title="Approval" description="Review process" />
-            <el-step title="Build" description="Plugin built" />
+            <el-step title="Build & Test" description="Build and test plugin" />
             <el-step title="Complete" description="Ready to use" />
           </el-steps>
         </div>
@@ -228,7 +237,7 @@
           <div class="form-section">
             <h3 class="section-title">Plugin Information</h3>
             
-            <!-- Required Fields Row: Expose and Path side by side -->
+            <!-- Required Fields Row: Expose and URL side by side -->
             <div class="form-row">
               <div class="form-column">
                 <el-form-item prop="plugin_metadata.expose" label="Expose Name *">
@@ -236,6 +245,7 @@
                     v-model="registrationForm.plugin_metadata.expose" 
                     placeholder="MyPluginApp"
                     size="large"
+                    @input="updatePath"
                   />
                   <div class="form-help">
                     JavaScript module name
@@ -244,31 +254,17 @@
               </div>
 
               <div class="form-column">
-                <el-form-item prop="plugin_metadata.path" label="Path *">
+                <el-form-item prop="repository_url" label="Source URL *">
                   <el-input 
-                    v-model="registrationForm.plugin_metadata.path" 
-                    placeholder="MyApp2"
+                    v-model="registrationForm.repository_url" 
+                    placeholder="https://github.com/user/repo.git or ./plugins/MyApp"
                     size="large"
                   />
                   <div class="form-help">
-                    Path identifier for serving
+                    Git repository URL or local path
                   </div>
                 </el-form-item>
               </div>
-            </div>
-            
-            <!-- Source URL - Full Width -->
-            <div class="form-full-width">
-              <el-form-item prop="repository_url" label="Source URL *">
-                <el-input 
-                  v-model="registrationForm.repository_url" 
-                  placeholder="https://github.com/user/repo.git or ./plugins/MyApp"
-                  size="large"
-                />
-                <div class="form-help">
-                  Git repository URL (e.g., https://github.com/user/repo.git) or local path (e.g., ./plugins/MyApp, plugins/MyApp, or just MyApp)
-                </div>
-              </el-form-item>
             </div>
 
             <!-- Optional Fields Row: Name, Author, Version -->
@@ -370,32 +366,13 @@
           </p>
         </el-form>
 
-        <!-- Step 1: Approval Process -->
+        <!-- Step 1: Build & Test Process -->
         <div v-if="currentStep === 1" class="step-content">
-          <div class="step-icon">
-            <svgo-icon-check-circle />
-          </div>
-          <h3>Plugin Submitted Successfully!</h3>
-          <p>Your plugin "<strong>{{ submittedPlugin?.name }}</strong>" has been submitted for review.</p>
-          <p>In production, this would go through an approval process, but for development we can skip directly to building.</p>
-          
-          <div class="step-actions">
-            <el-button @click="skipApproval" type="primary" size="large">
-              Skip Approval (Dev Mode)
-            </el-button>
-            <el-button @click="closeModal" size="large">
-              Close
-            </el-button>
-          </div>
-        </div>
-
-        <!-- Step 2: Build Process -->
-        <div v-if="currentStep === 2" class="step-content">
           <div class="step-icon">
             <svgo-icon-cog />
           </div>
-          <h3>Ready to Build</h3>
-          <p>Your plugin "<strong>{{ submittedPlugin?.name }}</strong>" is approved and ready to build.</p>
+          <h3>Build & Test Plugin</h3>
+          <p>Your plugin "<strong>{{ submittedPlugin?.name }}</strong>" has been submitted and is ready to build and test.</p>
           
           <div class="step-actions">
             <el-button 
@@ -404,7 +381,7 @@
               size="large"
               :loading="isSubmitting"
             >
-              {{ isSubmitting ? 'Building...' : 'Build Plugin' }}
+              {{ isSubmitting ? 'Building & Testing...' : 'Build & Test Plugin' }}
             </el-button>
             <el-button @click="closeModal" size="large">
               Close
@@ -412,8 +389,8 @@
           </div>
         </div>
 
-        <!-- Step 3: Complete -->
-        <div v-if="currentStep === 3" class="step-content">
+        <!-- Step 2: Complete -->
+        <div v-if="currentStep === 2" class="step-content">
           <div class="step-icon success">
             <svgo-icon-check-circle />
           </div>
@@ -532,9 +509,6 @@ const formRules = {
       trigger: 'blur'
     }
   ],
-  'plugin_metadata.path': [
-    { required: true, message: 'Please enter the path', trigger: 'blur' }
-  ],
   version: [
     {
       pattern: /^\d+\.\d+\.\d+$/,
@@ -596,7 +570,6 @@ const isFormValid = computed(() => {
   const form = registrationForm.value
   return (
     form.plugin_metadata.expose.trim() !== '' &&
-    form.plugin_metadata.path.trim() !== '' &&
     form.repository_url.trim() !== '' &&
     form.agreeToTerms
   )
@@ -619,12 +592,6 @@ const handleItemClick = (item: Item) => {
   router.push('/remote')
 }
 
-const handleCardClick = (item: Item) => {
-  // Only launch metadata plugins (they are the ones that are actually launchable)
-  if (item.source === 'metadata') {
-    handleItemClick(item)
-  }
-}
 
 const closeModal = () => {
   openModal.value = false
@@ -632,6 +599,11 @@ const closeModal = () => {
   submitError.value = ''
   currentStep.value = 0
   submittedPlugin.value = null
+}
+
+const updatePath = () => {
+  // Automatically set path to the same value as expose
+  registrationForm.value.plugin_metadata.path = registrationForm.value.plugin_metadata.expose.toLowerCase()
 }
 
 const resetForm = () => {
@@ -703,16 +675,12 @@ const submitRegistration = async () => {
     
     await loadPluginsFromAPI()
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('Registration failed:', error)
     submitError.value = error.message || 'Failed to submit registration. Please try again.'
   } finally {
     isSubmitting.value = false
   }
-}
-
-const skipApproval = () => {
-  currentStep.value = 2
 }
 
 const buildSubmittedPlugin = async () => {
@@ -734,18 +702,18 @@ const buildSubmittedPlugin = async () => {
     }
 
     const result = await response.json()
-    console.log('Plugin built successfully:', result)
+    console.log('Plugin built and tested successfully:', result)
     
     // Move to complete step
-    currentStep.value = 3
+    currentStep.value = 2
     
     // Refresh the plugins list to get updated status
     await loadPluginsFromAPI()
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('Build failed:', error)
     ElMessage({
-      message: error.message || 'Failed to build plugin. Please try again.',
+      message: error.message || 'Failed to build and test plugin. Please try again.',
       type: 'error',
       duration: 5000
     })
@@ -784,7 +752,7 @@ const buildPlugin = async (plugin: Item) => {
     // Refresh the plugins list to get updated status
     await loadPluginsFromAPI()
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('Build failed:', error)
     ElMessage({
       message: error.message || 'Failed to build plugin. Please try again.',
@@ -793,6 +761,44 @@ const buildPlugin = async (plugin: Item) => {
     })
   } finally {
     buildingPlugins.value.delete(plugin.id)
+  }
+}
+
+const submitToApproval = async (plugin: Item) => {
+  if (!plugin.id) return
+  
+  // Show confirmation dialog
+  try {
+    await ElMessageBox.confirm(
+      `Submit plugin "${plugin.name}" for approval? This will make it available for review.`,
+      'Submit to Approval',
+      {
+        confirmButtonText: 'Submit',
+        cancelButtonText: 'Cancel',
+        type: 'info'
+      }
+    )
+  } catch {
+    // User cancelled
+    return
+  }
+  
+  try {
+    // For now, we'll just show a success message
+    // In the future, this could call an API endpoint to submit for approval
+    ElMessage({
+      message: `Plugin "${plugin.name}" has been submitted for approval successfully.`,
+      type: 'success',
+      duration: 3000
+    })
+    
+  } catch (error: any) {
+    console.error('Submit to approval failed:', error)
+    ElMessage({
+      message: error.message || 'Failed to submit plugin for approval. Please try again.',
+      type: 'error',
+      duration: 5000
+    })
   }
 }
 
@@ -838,7 +844,7 @@ const deletePlugin = async (plugin: Item) => {
     // Refresh the plugins list
     await loadPluginsFromAPI()
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('Delete failed:', error)
     ElMessage({
       message: error.message || 'Failed to delete plugin. Please try again.',
@@ -915,17 +921,6 @@ const formatDate = (dateString: string) => {
   return `${Math.floor(diffDays / 365)} years ago`
 }
 
-const getStatusType = (status: string) => {
-  switch (status) {
-    case 'pending': return 'warning'
-    case 'building': return 'info'
-    case 'completed': return 'success'
-    case 'failed': return 'danger'
-    case 'built': return 'success'
-    case 'approved': return 'info'
-    default: return 'info'
-  }
-}
 
 const loadPluginsFromMetadata = async () => {
   try {
@@ -1322,25 +1317,19 @@ onMounted(async () => {
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .form-row-three {
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-.form-column {
-  // Removed column title styling since we now have a unified section
-}
 
-.form-column-third {
-  // Third column styling for three-column layout
-}
 
 .form-full-width {
-  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .form-help {
