@@ -1,4 +1,21 @@
 services:
+  promptme:
+    build:
+      context: ./promptme
+      dockerfile: Dockerfile
+    container_name: promptme
+    ports:
+      - "8001:80"
+    environment:
+      - PYTHONPATH=/app
+    env_file:
+      - ./promptme/.env
+    volumes:
+      - ./plugins:/plugins
+    restart: unless-stopped
+    networks:
+      - sparc-network
+
   plugin-registry:
     build:
       context: ./plugin-registry
@@ -16,6 +33,8 @@ services:
       - MINIO_BUCKET_NAME=plugins
       - MINIO_USE_SSL=false
       - HOST=localhost
+    env_file:
+      - ./plugin-registry/.env
     volumes:
       - sparc_datasets:/datasets
       - ./sparc-app-2/public:/app/portal/public
@@ -67,4 +86,6 @@ networks:
 volumes:
   sparc_datasets:
   minio_data:
+    driver: local
+  gen-repo:
     driver: local
