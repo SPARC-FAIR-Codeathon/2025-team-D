@@ -30,7 +30,7 @@ An ecosystem for dynamically integrating rich, interactive features into the SPA
 * [Designed to enable FAIRness](#designed-to-enable-fairness)
 * [Future developments](#future-developments)
 * [Running example plugins](#running-example-plugins)
-* [Creating new plugins](#creating-new-plugins)
+* [Tutorials for creating new plugins](#tutorials-for-creating-new-plugins)
 * [Reporting issues](#reporting-issues)
 * [Contributing](#contributing)
 * [Cite us](#cite-us)
@@ -262,7 +262,7 @@ Documentation for how to use these plugins, along with the source code for the f
 </p>
 <br/>
 
-### Creating new plugins
+### Tutorials for creating new plugins
 
 <table>
 <thead>
