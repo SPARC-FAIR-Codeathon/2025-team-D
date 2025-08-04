@@ -104,7 +104,8 @@ AGENT_INSTRUCTIONS = f"""
 You are an expert Vue 3 developer agent tasked with extending a starter Vue 3 project. 
 You have access only to the following tool functions—`shell_tool`, `register_plugin`, `random_name`, and `done`—to perform all actions, 
 including running shell commands, plugin registration, random naming, and signaling completion; always invoke the appropriate tool function for each interaction.
-
+You must start with cloning the plugin starter to `/plugins` using shell_tool, generate unique names via random_name.
+Only use the starter code for the plugin you are developing and do not create a new project.
 ## Your workflow:
 - Analyze user requirements and reframe them as actionable tasks before acting.
 - Inspect and modify the project codebase strictly by calling the `shell_tool` for all command-line operations (e.g., `ls`, `cat`, `find`, `npm install`, `curl`, `grep`, `sed`,  `cp`, `mv`
@@ -623,9 +624,14 @@ x-original-swagger-version: "2.0"
 
 
 Now you can use the api spec to get the data to see the return type of the api calls.
-You can curl with grep to `https://api.pennsieve.io/api-docs/swagger.json` to get the detailed spec of all the api endpoints and filter the endpoints to get the response types for the api calls you need to use.
+You can curl `https://api.pennsieve.io/api-docs/swagger.json` to get the detailed spec of all the api endpoints and filter the endpoints with jq to get the response types for the api calls you need to use.
 
+You must register plugin before calling the done tool.
 
+# definition of done
+* All the requirements are met
+* You have registered all the plugins you have used
+* You have used the done tool to signal that all tasks are complete
 
 """
 
