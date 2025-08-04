@@ -48,10 +48,10 @@ Learn more about the Codeathon [here](https://sparc.science/help/2025-sparc-fair
 ## Introduction
 The **[NIH Common Fund SPARC program](https://commonfund.nih.gov/sparc)**(Stimulating Peripheral Activity to Relieve Conditions) aims to advance our understanding of **peripheral nerves**—those that connect the brain and spinal cord to the rest of the body—and how their electrical signals regulate internal organ function. The ultimate goal is to develop **therapeutic devices** that modulate nerve activity to improve organ function and treat conditions such as hypertension, heart failure, and gastrointestinal disorders.
 
-SPARC is a collaborative effort involving **60 research groups across 90 institutions and companies**, working on **over 15 organs and systems in 8 species**.
+SPARC is a collaborative effort involving **60 research groups across 90 institutions and companies**, working on **over >60 anatomies, organs and systems in 8 species**.
 
 The **[SPARC Portal](http://sparc.science/)** provides a single user-facing online interface to access resources developed by the SPARC community that can be shared, cited visualised, computed, and used for virtual experimentation. Key features include:
-- A **collection of well-curated datasets** in a standardised format, including anatomical and computational. These datasets can be explored under the "[Find Data](https://sparc.science/data?type=dataset)" section of the SPARC Portal, and resources are provided describing how [how to navigate a SPARC dataset](https://docs.sparc.science/docs/navigating-a-sparc-dataset) and [how a dataset is formatted](https://docs.sparc.science/docs/overview-of-sparc-dataset-format).
+- A **collection of ~350 well-curated datasets** in a standardised format, containing multimodal data: physiology, morphology, anatomy, transcriptomics, computational results etc. These datasets can be explored under the "[Find Data](https://sparc.science/data?type=dataset)" section of the SPARC Portal, and resources are provided describing how [how to navigate a SPARC dataset](https://docs.sparc.science/docs/navigating-a-sparc-dataset) and [how a dataset is formatted](https://docs.sparc.science/docs/overview-of-sparc-dataset-format).
 - **Web tools for exploring SPARC resources** that are directly integrated into the portal, including:
   - Searching datasets with pre-configured filters 
   - Pre-configured data viewers e.g. gallery, image, plot, scaffold, segmentation, simulation, and dataset viewers
@@ -67,7 +67,9 @@ Despite its rich offering, the **SPARC portal currently lacks the ability for us
 - **Access these capabilities during dataset or model development**
 - **Enable non-technical users** to contribute or rapidly prototype new features
 
-Implementing any of the above requires expert software engineers familiar with the SPARC codebase. Changes necessitate taking the portal offline, updating the codebase, performing testing and review, and redeploying—causing significant overhead to the SPARC community.
+These capabilities are essential to overcome current limitations in flexibility, accessibility, and extensibility of the SPARC Portal, and to enable a FAIR-aligned, community-driven approach to developing and interacting with SPARC resources.
+
+Implementing any of the above requires expert software engineers familiar with the SPARC codebase. Changes necessitate updating the portal codebase, performing testing and review, and redeploying—causing significant overhead to the SPARC community.
 
 ## Our solution - sparc-plugins
 
