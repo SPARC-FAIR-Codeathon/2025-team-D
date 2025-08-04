@@ -1,9 +1,8 @@
 # Tutorial 5: Creating and testing plugins using the local development environment
 
 ## Summary
-Brief description of what this tutorial covers and its purpose.  
-For example:  
-This tutorial guides you through creating and testing plugins using the SPARC `sparc-plugins` cloud-based development environment.
+
+This tutorial demonstrates how to create and test plugins using the local development environment. This includes functionality for loading data from locally stored SDS datasets.
 
 ---
 
@@ -59,3 +58,4 @@ npm run build
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
