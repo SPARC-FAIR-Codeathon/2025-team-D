@@ -56,7 +56,14 @@ Congratulations!
 You have successfully create a generated plugin!
 <img width="1259" height="915" alt="Screenshot from 2025-08-05 14-29-19" src="https://github.com/user-attachments/assets/ab0eedb0-309d-4821-85ce-b2d7ad07612a" />
 
+## 4. Watch Demo
+
+To see a live demonstration of the SPARC plugin generation in action, watch the video below:
+
+> 🎥 **Video Title:** *[AI Gen SPARC Plugin Showcase](https://youtu.be/eGnyMCJS1vk)*  
+
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 
