@@ -22,10 +22,18 @@ This tutorial guides you through creating plugins using generative AI from the C
 ---
 
 ## 1. Creating a prompt for generative AI tool
+
 1. Go to the [SPARC portal plugins page](http://130.216.217.115:3000/register-plugins).
 <img width="1263" height="892" alt="Screenshot from 2025-08-05 12-47-17" src="https://github.com/user-attachments/assets/ccba3e28-e083-4e5e-9e50-afc4fb774226" />
-2. Select **Generate Plugin** and enter the prompt for creating your plugin. For example: create a plugin named "Hello YOUR NAME" - A plugin that displays 'Hello YOUR NAME!' text in red color
+
+2. Select **Generate Plugin** and enter the prompt for creating your plugin. For example:
+   
+```
+create a plugin named "Hello YOUR NAME" - A plugin that displays 'Hello YOUR NAME!' text in red color
+```
+
 <img width="1259" height="915" alt="Screenshot from 2025-08-05 13-57-39" src="https://github.com/user-attachments/assets/f21d9324-306c-433b-bbb2-44026953a791" />
+
 3.  Select **Generate** to Generate the plugin.
 After click the **Generate** button, a hint will show up in the top of the website. It will take around 3 minutes. Enjoy your coffee during the time.
 
@@ -49,6 +57,7 @@ You have successfully create a generated plugin!
 <img width="1259" height="915" alt="Screenshot from 2025-08-05 14-29-19" src="https://github.com/user-attachments/assets/ab0eedb0-309d-4821-85ce-b2d7ad07612a" />
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 
