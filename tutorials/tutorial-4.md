@@ -10,7 +10,6 @@ This tutorial guides you through creating plugins using generative AI from the C
 
 - Use generative AI tools to empower non-technical users to rapidly prototype a new plugins
 - Test new plugins directly within the SPARC portal.
-- [Learning outcome 3]
 
 ---
 
@@ -58,6 +57,7 @@ npm run build
 
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 
