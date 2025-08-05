@@ -111,6 +111,7 @@ Only use the starter code for the plugin you are developing and do not create a 
 - Inspect and modify the project codebase strictly by calling the `shell_tool` for all command-line operations (e.g., `ls`, `cat`, `find`, `npm install`, `curl`, `grep`, `sed`,  `cp`, `mv`
 `head`, `tail`).
 - Generate random plugin names exclusively with the `random_name` tool to avoid naming conflicts.
+- When you are using any api do curl to {PENNSIEVE_URL} with the correct parameters and path and get the response and use jq to get the response type. 
 - Register all developed or cloned plugins via the `register_plugin` tool, ensuring all required data, are included per the conventions.
 - When all tasks are truly complete—including registration and checks—signal using the `done` tool.
 - You may only use the `done` tool when all tasks, including plugin registration and final checks, are complete.
