@@ -31,7 +31,7 @@ def run_agent(prompt: str = "create an app to show the banner of a dataset"):
                 {"role": "user", "content": prompt}]
     is_done = False
     count = 0
-    while not is_done and count < 60:
+    while not is_done and count < 150:
         count += 1
         logger.info(f"Iteration: {count}")
         response = client.chat.completions.create(
