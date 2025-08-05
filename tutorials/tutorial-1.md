@@ -30,9 +30,13 @@ Start by creating a new **Vue 3 Single Page Application (SPA)** project **withou
 This project serves as the foundation for deploying the plugin within the Vue 3 framework.
 
 - A [plugin template](https://github.com/SPARC-FAIR-Codeathon/2025-team-D/tree/main/resource/plugin-template#plugin-template) is available in the **`sparc-plugins`** repository to help you get started.  
-- Several [example plugins](https://github.com/PrasadBabarendaGamage/2025-team-D/blob/main/README.md#running-example-plugins) are also available.
--   
-  You can reuse or adapt these examples to create new plugins.
+- Several example plugins are also available. You can reuse or adapt these examples to create new plugins:
+    - [2025-team-D-sparc-plugins-hello-world](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-hello-world)
+    - [2025-team-D-sparc-plugins-simulationvuer](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-simulationvuer)
+    - [2025-team-D-sparc-plugins-simulationvuer-customised-style](https://github.com/Copper3D-brids/plugin-SimulationVuer)
+    - [2025-team-D-sparc-plugins-chatbot-api](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-api)
+    - [2025-team-D-sparc-plugins-chatbot-client](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-client)
+    - [2025-team-D-sparc-plugins-medical-image-annotation](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-medical-image-annotation)
 
 For this tutorial, we will assume that the user has already created the source code for the plugin, and we will assume this corresponds to the [source code of the Hello World example](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-hello-world/) for the subsequent steps.
 
@@ -85,6 +89,7 @@ This will automatically build the plugin and dynamically link it into the SPARC 
 2. Choose **Submit for Approval** to send it to the SPARC team for review.
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 
