@@ -138,17 +138,8 @@ The sparc-plugins ecosystem enhances the SPARC portal by aligning with the FAIR 
 - Reduces reliance on core engineering teams, enabling broader participation and faster iteration.
 - Empowers non-technical users to contribute via generative AI tools.
 
-<!--*
-
 ## Designed to enable FAIRness
-We have assessed the FAIRness of our sparc-plugins against the FAIR Principles established for research software. The details of this assemsement is available in the codeathon google drive for team 2.
-
-Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and workflow standards including:  
-- The Common Workflow Language (CWL) - is an open standard and specification used in the field of bioinformatics and scientific computing to describe and execute tools and workflows. CWL provides a way to define and share complex computational tasks and data processing pipelines in a portable and platform-independent manner. It uses a JSON-based format to describe input data, processing steps, and output data, allowing researchers to collaborate and share reproducible analyses across different computing environments. CWL aims to enhance the ease of defining, sharing, and executing computational workflows, particularly in the context of data-intensive scientific research.
-- EDAM ontology - EDAM is a comprehensive ontology of well-established, familiar concepts that are prevalent within bioscientific data analysis and data management (including computational biology, bioinformatics, and bioimage informatics). EDAM includes topics, operations, types of data and data identifiers, and data formats, relevant in data analysis and data management in life sciences.
-- SPARC Dataset Structure
-
--->
+When plugins are built, the source code and build files for each plugin are stored in the SPARC Dataset Structure (using sparc-me), with metadata populated using information from the plugin registration page. These datasets can be contributed to the SPARC Portal to enable plugins to be FAIR.
 
 ## Future developments
 - Making the sparc-plugin developement environment available directly from within oSPARC.
@@ -158,58 +149,6 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
   - Improve scalability and maintainability by isolating concerns across components.
   - Strengthen alignment with FAIR principles, especially interoperability and reusability, by promoting standardized interfaces and reusable UI modules.
 - Demonstrate how SPARC plugins can be integrated into portals on other platforms being developed around the world including the Auckland Bioengineering Institute's 12 Labours DigitalTWINS platform, which is being deployed within New Zealand's  public health system.
-<!--*
-- Standardise the description of intputs and outputs of these models and tools
-- Integrate our knowledge graph with other knowledgebases including the SPARC Anatomical Connectivity Maps and SPARC Functional Connectivity maps. This will enable workflows to be automatically assembled not only based on input/output relationships, but also based on anatomical and physiological connectivity.
-- Expand tool descriptions that can be accessed e.g. Workflow Description Language, Nextflow, Snakemake etc 
-- Link with Large Language Models to support more complex queries, for example to help visualise quantities of interest.
-- Show how the assembled workflows can be run with [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) directly from the commandline or through existing cloud computing platforms from [Dockstore.org](https://dockstore.org) (currently supports running on [AnVIL](https://anvilproject.org), [Cavatica](https://www.cavatica.org), [CGC](https://www.cancergenomicscloud.org), [DNAnexus](https://www.dnanexus.com), [Galaxy](https://usegalaxy.org), [Nextflow Tower](https://seqera.io/tower), and [Terra].
-- Provide API documentation.
-
-#### Pre-requisites 
-
-- Container service, for example:
-  -  Docker vX.X or greater
-
-- [Git](https://git-scm.com/)
-- Python. Tested on:
-   - 3.10
-- Operating systems: 
-  - Tested on:
-    - Ubuntu 24.04
-
-### From source code
-
-#### Downloading source code
-Clone the sparc-plugins repository from github, e.g.:
-```
-git clone https://github.com/SPARC-FAIR-Codeathon/2025-team-D.git
-```
-
-#### Installing dependencies
-
-1. Setting up a virtual environment (optional but recommended). 
-   In this step, we will create a virtual environment in a new folder named **venv**, 
-   and activate the virtual environment.
-   
-   * Linux
-   ```
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-   
-   * Windows
-   ```
-   python3 -m venv venv
-   venv\Scripts\activate
-   ```
-   
-2. Installing dependencies via pip
-    ```
-    pip install -r requirements.txt
-    ```
-
--->
 
 ### Running example plugins
 
