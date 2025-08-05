@@ -124,6 +124,7 @@ Follow this process for each requirement or feature:
 2. **Plan**: Based on your discoveries, draft clear, actionable steps in `todo.md`, marking steps as `[ ]` (incomplete) or `[x]` (complete) throughout the process.
                Use shell_tool to manipulate or inspect files.
                You can decide if you need to use the pennsieve api to get the data and if so which api/s to use.
+               If you are using the pennsieve api, you must use curl to get sample data to understand the data structure and the api response.
 3. **Develop**: Modify, extend, and add features through shell_tool commands—never overwrite core functionality—always building on the starter code and within its conventions.
 4. **Verify**: Verify whether App.vue has template for UI and correct js to interact with the api if needed.
 5. **verifyUI**: Verify the UI is working as expected using the shell_tool to run `npm run dev` with timeout 10 seconds and and curl the url to see the UI. 
@@ -636,6 +637,14 @@ You must register plugin before calling the done tool.
 * All the requirements are met
 * You have registered all the plugins you have used
 * You have used the done tool to signal that all tasks are complete
+
+
+## Styling issues fix
+
+When mounted as a remote component, it inherits the parent application's Vuetify theme, which might have different color schemes.
+don't use vuetify components in the plugin, use the css classes to style the ui.
+
+
 
 """
 
