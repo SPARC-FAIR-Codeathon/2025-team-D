@@ -42,17 +42,20 @@ Once the plugin’s source code is in a repository, the `sparc-plugins` **cloud-
 ## 2. Registering Your Plugin on the `sparc-plugins` Cloud-Based Development Environment
 
 1. Go to the [SPARC portal plugins page](http://130.216.217.115:3000/register-plugins).
-<img width="1264" height="910" alt="Screenshot from 2025-08-05 10-43-18" src="https://github.com/user-attachments/assets/165db9bb-1d8d-4049-b857-9ec001adefc5" />
+<img width="1263" height="892" alt="Screenshot from 2025-08-05 12-47-17" src="https://github.com/user-attachments/assets/ccba3e28-e083-4e5e-9e50-afc4fb774226" />
+
 
 2. Select **Register Plugin** to enter the details of your plugin, including the **repository URL**.
-<img width="1263" height="909" alt="Screenshot from 2025-08-05 11-21-16" src="https://github.com/user-attachments/assets/7f8655d5-4fbe-4368-854f-836e6de95625" />
+<img width="1259" height="892" alt="Screenshot from 2025-08-05 12-43-19" src="https://github.com/user-attachments/assets/7f2a450a-e4a0-4a84-8df4-2dc55814f5e5" />
+
 
 3. Provide the **Build Command**, which will be used to build the web app plugin.  
 4. Check the **review agreement** checkbox to allow your plugin to be reviewed prior to publishing.  
 5. Select **Submit Plugin** to register your plugin.
 
 After registration, select **Build and Test Plugin**.
-INSERT SCREENSHOT
+<img width="1259" height="892" alt="Screenshot from 2025-08-05 12-43-27" src="https://github.com/user-attachments/assets/108ac2cd-b856-48c4-ae32-ddd72bc5046e" />
+
 This will automatically build the plugin and dynamically link it into the SPARC portal.
 
 ---
@@ -60,9 +63,11 @@ This will automatically build the plugin and dynamically link it into the SPARC 
 ## 3. Testing Your Plugin
 
 1. Select **Launch** on your plugin to activate it and test its functionality.
-   INSERT SCREENSHOT 
+<img width="1263" height="892" alt="Screenshot from 2025-08-05 12-44-42" src="https://github.com/user-attachments/assets/4ef07ce9-96ec-4159-b46d-3c44caa32d32" />
+
 3. To rebuild the plugin (for example, after making changes to the source code repository), select the **three vertical dots (⋮)** options menu on your plugin and choose **Rebuild**.
-   INSERT SCREENSHOT WITH THE MENUE SHOWING WHEN YOU CLICK THE THREE DOTS
+<img width="1263" height="892" alt="Screenshot from 2025-08-05 12-46-00" src="https://github.com/user-attachments/assets/e5662fcf-9841-4c1d-9a92-74347540478c" />
+
 
 ---
 
@@ -79,6 +84,7 @@ This will automatically build the plugin and dynamically link it into the SPARC 
 2. Choose **Submit for Approval** to send it to the SPARC team for review.
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 

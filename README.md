@@ -1,5 +1,5 @@
 # SPARC Plugins (sparc-plugins)
-An ecosystem for dynamically integrating rich, interactive features into the SPARC portal in accordance with FAIR principles.
+A framework for dynamically integrating rich, interactive web apps into the SPARC portal in accordance with FAIR principles.
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -74,11 +74,11 @@ Implementing any of the above requires expert software engineers familiar with t
 ## Our solution - sparc-plugins
 
 To address this problem, we have **developed SPARC Plugins (sparc-plugins)**—
-an ecosystem for dynamically integrating rich, interactive features into the SPARC portal in accordance with FAIR principles.
+a framework for dynamically integrating rich, interactive web apps into the SPARC portal in accordance with FAIR principles.
 
 ## Supported Features
 
-The **sparc-plugins** ecosystem currently supports the following capabilities:
+The **sparc-plugins** toolkit currently supports the following capabilities:
 
 ### 🔌 Plugin Integration via the SPARC Portal
 A new dedicated **Plugins Page** on the SPARC Portal where users can **browse and activate plugins**. These plugins have the ability to:
@@ -89,9 +89,8 @@ A new dedicated **Plugins Page** on the SPARC Portal where users can **browse an
   - 3D visualisations
   - AI-powered chatbots
   - Advanced image segmentation tools
-- **Process data to generate new datasets**
 
-### 🚀 Cloud-Based Plugin Development Environment
+### 🚀 Cloud-Based Plugin Development Environment on the SPARC Portal
 Provides an **automated and streamlined experience for plugin development, registration, testing, and review** directly through the Plugins Page of the SPARC Portal.
 - Create new plugins by reusing existing plugin examples
 - Register plugins by referencing their code repositories directly on the Plugins Page
@@ -153,7 +152,7 @@ Additionally, sparc-plugins has adopted exsiting dataset, knoweledge graph and w
 
 ## Future developments
 - Making the sparc-plugin developement environment available directly from within oSPARC.
-- Use sparc-flow to store plugins descriptions in a standard tool description language such as the common workflow language, enalbing them to be integrated into simulation workflows.
+- Use sparc-flow to store plugins descriptions in a standard tool description language such as the common workflow language, enabling them to be integrated into simulation workflows. This workflows can then be used to process SPARC data in new ways and generate new datasets e.g. using sparc-me, directly within these plugins.
 - Adopt a micro frontend architecture to take modularity provided by sparc-plugins even further—enabling each plugin or UI module to be developed, deployed, and maintained as an independent application. In addition to existing benefits, this will:
   - Allow users to use different frameworks or technologies for each plugin e.g. Vue, React, Angular.
   - Improve scalability and maintainability by isolating concerns across components.

@@ -46,8 +46,7 @@ For this tutorial:
 
 ## 2. Forking the Simulation Viewer Repository
 
-1. Go to the [Simulation Viewer GitHub repository](https://github.com/ABI-Software/simulationvuer)  
-2. Click **Fork** to create your own copy of the repository  
+1. Go to the [Simulation Viewer GitHub repository](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-simulationvuer)
 3. Clone your fork locally to modify the source code
 
 ---
@@ -96,3 +95,4 @@ You have successfully:
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+

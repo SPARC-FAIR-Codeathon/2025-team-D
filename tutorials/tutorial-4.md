@@ -2,7 +2,7 @@
 
 ## Summary
  
-This tutorial guides you through creating plugins using generative AI from the Cloud-based developmentg environment.
+This tutorial guides you through creating plugins using generative AI from the Cloud-based development environment.
 
 ---
 
@@ -58,6 +58,7 @@ npm run build
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 
