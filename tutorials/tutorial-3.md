@@ -17,7 +17,8 @@ By the end of this tutorial, you will be able to:
 ## Table of Contents
 1. [Introduction](#1-introduction)  
 2. [Easy mode: deploy plugin to connect existing server api](#2-easy-mode)  
-3. [Step 2 Title](#3-advance-mode)  
+3. [Advance mode: deploy plugin to connect own server api](#3-advance-mode)
+4. [Results](#4-results)  
 
 ---
 
@@ -32,6 +33,8 @@ We currently have both the Vue-based frontend and the backend of our chatbot plu
 **deploy plugin to connect existing server api**
 
 Find the plugin fontend Github code - [chatbot client](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-client)
+
+Then Go to the [SPARC Portal](http://130.216.217.115:3000/)
 
 Then follow the [Tutorial 1: Registering your plugin on the cloud-based development environment](./tutorial-1.md#2-registering-your-plugin-on-the-sparc-plugins-cloud-based-development-environment) sections to host the plugin. 
 
@@ -63,8 +66,15 @@ For advance user's, you may want to host the server api locally or somewhere.
     - Step 2: find and copy the `api server endpoint url`, then go to the `chatbot client` folder `src/components/ChatInterface.vue line 200`, replace the server url to your one.
     - Step 3: you can do wantever developments for this client. 
     - Step 4: after you modify it, you can commit and push to your Github repo.
-    - Step 5: copy your repo url then follow the [Tutorial 1: Registering your plugin on the cloud-based development environment](./tutorial-1.md#2-registering-your-plugin-on-the-sparc-plugins-cloud-based-development-environment) sections to host the plugin in SPARC Portal. 
-    
+    - Step 5: copy your repo url and then Go to the [SPARC Portal](http://130.216.217.115:3000/)
+    - then follow the [Tutorial 1: Registering your plugin on the cloud-based development environment](./tutorial-1.md#2-registering-your-plugin-on-the-sparc-plugins-cloud-based-development-environment) sections to host the plugin in SPARC Portal. 
+
+---
+
+## 4. Results
+
+Once you deploy the plugin successfully in SPARC portal, you will see like these:
+
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
