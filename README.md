@@ -89,7 +89,8 @@ A new dedicated **Plugins Page** on the SPARC Portal where users can **browse an
   - 3D visualisations
   - AI-powered chatbots
   - Advanced image segmentation tools
-
+  ![IMG_2146](https://github.com/user-attachments/assets/e9c1655e-6487-4d82-90cf-e95eee86ebb2)
+  
 ### 🚀 Cloud-Based Plugin Development Environment on the SPARC Portal
 Provides an **automated and streamlined experience for plugin development, registration, testing, and review** directly through the Plugins Page of the SPARC Portal.
 - Create new plugins by reusing existing plugin examples
