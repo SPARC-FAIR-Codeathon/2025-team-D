@@ -7,24 +7,22 @@ This tutorial guides you through creating plugins using generative AI from the C
 ---
 
 ## Learning Outcomes
-By the end of this tutorial, you will be able to:
 
-- [Learning outcome 1]
-- [Learning outcome 2]
+- Use generative AI tools to empower non-technical users to rapidly prototype a new plugins
+- Test new plugins directly within the SPARC portal.
 - [Learning outcome 3]
 
 ---
 
 ## Table of Contents
-1. [Introduction](#1-introduction)  
-2. [Step 1 Title](#2-step-1-title)  
-3. [Step 2 Title](#3-step-2-title)  
-4. [Step 3 Title](#4-step-3-title)  
-5. [Next Steps](#5-next-steps)
+1. [Creating a prompt for generative AI tool](#1-Create-a-prompt-for-generative-AI-tool)  
+2. [Generating plugin with AI](#2-Generate-plugin-with-AI)  
+3. [Building the plugin](#3-Build-the-plugin)  
+4. [Testing the generated plugin](#4-Testing-the-generated-plugin)  
 
 ---
 
-## 1. Introduction
+## 1. Creating a prompt for generative AI tool
 
 Provide a short introduction to the tutorial topic.  
 Mention prerequisites if needed, e.g.:  
@@ -33,7 +31,7 @@ Mention prerequisites if needed, e.g.:
 
 ---
 
-## 2. Step 1 Title
+## 2. Generating plugin with AI
 
 Describe the first step in detail.  
 
@@ -44,7 +42,7 @@ Example structure for steps:
 
 ---
 
-## 3. Step 2 Title
+## 3. Building the plugin
 
 Explain the next step.  
 - Use **bulleted lists** for actions  
@@ -56,8 +54,11 @@ npm run build
 ```
 
 ---
+## 4. Testing the generated plugin
+
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 
