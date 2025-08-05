@@ -4,7 +4,7 @@
 
 This tutorial demonstrates how to create and test plugins using the local development environment. This includes functionality for loading data from locally stored SDS datasets.
 
-Here, we will be using the example of AI medical image annotation plugin. This has a vue based frontend which will be built as an SPARC plugin, and a backend which will be used to load data from locally stored SDS datasets, and run AI pretrained model to obtain segmentation mask. 
+Here, we will be using the example of [AI medical image annotation plugin]([https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-medical-image-annotation]) This has a vue based frontend which will be built as an SPARC plugin, and a backend which will be used to load data from locally stored SDS datasets, and run AI pretrained model to obtain segmentation mask. 
 
 ## Learning Outcomes
 By the end of this tutorial, you will be able to:
@@ -96,6 +96,7 @@ Now you can interact with the AI annotation plugin which accesses a SDS dataset 
 
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 
