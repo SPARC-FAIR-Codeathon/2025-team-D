@@ -31,7 +31,7 @@ By the end of this tutorial, you will be able to:
 
 - Docker
 - Docker compose
-- 
+- Git
 
 ## 2. Setting up a local development environment
 
