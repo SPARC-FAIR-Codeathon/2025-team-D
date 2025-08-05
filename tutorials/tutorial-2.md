@@ -47,7 +47,9 @@ For this tutorial:
 ## 2. Forking the Simulation Viewer Repository
 
 1. Go to the [Simulation Viewer GitHub repository](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-simulationvuer)
-3. Clone your fork locally to modify the source code
+<img width="1261" height="751" alt="Screenshot from 2025-08-05 15-11-18" src="https://github.com/user-attachments/assets/685971c6-b348-4eb9-9cb6-caed1ef298b5" />
+
+2. Clone your fork locally to modify the source code
 
 ---
 
@@ -66,6 +68,7 @@ This ensures that your plugin automatically loads the desired dataset when launc
 Update the viewer’s **CSS or component styling** to **increase the font size** for improved readability.  
 
 Commit and push your changes to your forked repository.
+<img width="1261" height="751" alt="Screenshot from 2025-08-05 15-10-48" src="https://github.com/user-attachments/assets/694d1821-f111-41a5-a951-dcb8250b3b82" />
 
 > **Note:**  
 > The resulting plugin for these modifications corresponds to **Example 2** provided by the `sparc-plugins` team.  
@@ -95,4 +98,5 @@ You have successfully:
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
