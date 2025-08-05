@@ -9,7 +9,8 @@ services:
     environment:
       - PYTHONPATH=/app
     env_file:
-      - ./promptme/.env
+      # - ./promptme/.env
+      - .env
     volumes:
       - ./plugins:/plugins
     restart: unless-stopped
@@ -34,7 +35,8 @@ services:
       - MINIO_USE_SSL=false
       - HOST=localhost
     env_file:
-      - ./plugin-registry/.env
+      # - ./plugin-registry/.env
+      - .env
     volumes:
       - sparc_datasets:/datasets
       - ./sparc-app-2/public:/app/portal/public
@@ -58,7 +60,8 @@ services:
       - ./sparc-app-2/public:/app/public
       - ./plugins:/plugins
     env_file:
-      - ./sparc-app-2/.env
+      # - ./sparc-app-2/.env
+      - .env
     environment:
       - PLUGIN_API=http://localhost:8000
     command: sh -c "rm -f /tmp/nitro/*.sock && yarn dev"
