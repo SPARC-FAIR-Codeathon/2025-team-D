@@ -72,12 +72,25 @@ For advance user's, you may want to host the server api locally or somewhere.
 ---
 
 ## 4. Results
+- Reigister chatbot app:
+<img width="1920" height="910" alt="image" src="https://github.com/user-attachments/assets/591946aa-f2b3-4059-ab2c-180bab4fcbd4" />
 
-Once you deploy the plugin successfully in SPARC portal, you will see like these:
+- Fill the plugin infomation:
+<img width="1920" height="910" alt="image" src="https://github.com/user-attachments/assets/ee69d378-b1d7-4ee2-85db-9e7bdbf4b8a9" />
+
+- After build then launch the chatbot app:
+<img width="1920" height="910" alt="image" src="https://github.com/user-attachments/assets/6fcfe68f-f365-47a1-bdac-bb19749566f5" />
+
+- The you can try ask some questions, e.g:
+<img width="1920" height="910" alt="image" src="https://github.com/user-attachments/assets/779afac7-a164-453a-a7a8-759cbf9ea6c5" />
+<img width="1920" height="910" alt="image" src="https://github.com/user-attachments/assets/49115dd1-94f9-40d5-8668-e784929a5612" />
+
+Now, the chatbot app is successfully installed in the SPARC Portal.
 
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
 
