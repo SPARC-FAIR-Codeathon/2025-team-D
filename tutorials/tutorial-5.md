@@ -33,6 +33,7 @@ By the end of this tutorial, you will be able to:
 - Docker
 - Docker compose
 - Git
+- Plugin AI Annotator (for more details about this plugin [please have a look at here](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-medical-image-annotation?tab=readme-ov-file#2025-team-d-sparc-plugins-medical-image-annotation))
 
 ## 2. Setting up a local development environment
 
@@ -97,5 +98,6 @@ Now you can interact with the AI annotation plugin which accesses a SDS dataset 
 
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
