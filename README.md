@@ -143,12 +143,12 @@ When plugins are built, the source code and build files for each plugin are stor
 
 ## Future developments
 - Making the sparc-plugin developement environment available directly from within oSPARC.
-- Use sparc-flow to store plugins descriptions in a standard tool description language such as the common workflow language, enabling them to be integrated into simulation workflows. This workflows can then be used to process SPARC data in new ways and generate new datasets e.g. using sparc-me, directly within these plugins.
-- Adopt a micro frontend architecture to take modularity provided by sparc-plugins even further—enabling each plugin or UI module to be developed, deployed, and maintained as an independent application. In addition to existing benefits, this will:
+- Use [sparc-flow](https://github.com/SPARC-FAIR-Codeathon/sparc-flow) to store plugins descriptions in a standard tool description language such as the common workflow language, enabling them to be integrated into simulation workflows. This workflows can then be used to process SPARC data in new ways and generate new datasets e.g. using sparc-me, directly within these plugins.
+- Adopt a [micro frontend architecture](https://micro-frontends.org) to take modularity provided by sparc-plugins even further—enabling each plugin or UI module to be developed, deployed, and maintained as an independent application. In addition to existing benefits, this will:
   - Allow users to use different frameworks or technologies for each plugin e.g. Vue, React, Angular.
   - Improve scalability and maintainability by isolating concerns across components.
   - Strengthen alignment with FAIR principles, especially interoperability and reusability, by promoting standardized interfaces and reusable UI modules.
-- Demonstrate how SPARC plugins can be integrated into portals on other platforms being developed around the world including the Auckland Bioengineering Institute's 12 Labours DigitalTWINS platform, which is being deployed within New Zealand's  public health system.
+- Demonstrate how SPARC plugins can be integrated into portals on other platforms being developed around the world including the Auckland Bioengineering Institute's [12 Labours DigitalTWINS platform](https://doi.org/10.52843/cassyni.3st2d2), which is being deployed within New Zealand's  public health system.
 
 ### Running example plugins
 
