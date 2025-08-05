@@ -5,7 +5,7 @@
 This tutorial demonstrates how to create and test plugins using the local development environment. This includes functionality for loading data from locally stored SDS datasets.
 
 Here, we will be using the example of ...
-this [example] has a vue based frontend which will be built as an SPARC plugin, and a backend which will be used to load data from locally stored SDS datasets, and run simulation...
+this [example] has a vue based frontend which will be built as an SPARC plugin, and a backend which will be used to load data from locally stored SDS datasets, and run simulation etc.
 ---
 
 ## Learning Outcomes
@@ -22,7 +22,7 @@ By the end of this tutorial, you will be able to:
 2. [Setting up a local development environment](#2-setting-up-a-local-development-environment)  
 3. [Registering a local plugin](#3-registering-a-local-plugin)  
 4. [Setting up the plugin's backend server](#4-setting-up-the-plugin's-backend-server)  
-5. [Loading data from a locally stored SDS dataset](#5-loading-data-from-a locally-stored-sds-dataset)
+5. [Loading data from a locally stored SDS dataset](#5-loading-data-from-a-locally-stored-sds-dataset)
 6. [Running simulation](#6-running-simulation)
 
 ---
@@ -66,5 +66,6 @@ sudo docker compose up
 
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
 
