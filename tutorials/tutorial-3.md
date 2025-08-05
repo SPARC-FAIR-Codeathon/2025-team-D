@@ -2,59 +2,69 @@
 
 ## Summary
 
-This tutorial guides you through creating plugins that link to external services.
+This tutorial walks you through the process of creating and deploying a SPARC Portal plugin that connects to an external API server. Whether you're using an existing backend or hosting your own, you'll learn how to integrate everything smoothly into the SPARC ecosystem.
 
 ---
 
 ## Learning Outcomes
 By the end of this tutorial, you will be able to:
 
-- [Learning outcome 1]
-- [Learning outcome 2]
-- [Learning outcome 3]
+- Learn how to set up a Vue-based plugin in the SPARC Portal that connects to an external API server.  
+- Deploy the external API server locally or host it in the cloud, depending on your setup.
 
 ---
 
 ## Table of Contents
 1. [Introduction](#1-introduction)  
-2. [Step 1 Title](#2-step-1-title)  
-3. [Step 2 Title](#3-step-2-title)  
-4. [Step 3 Title](#4-step-3-title)  
-5. [Next Steps](#5-next-steps)
+2. [Easy mode: deploy plugin to connect existing server api](#2-easy-mode)  
+3. [Step 2 Title](#3-advance-mode)  
 
 ---
 
 ## 1. Introduction
 
-Provide a short introduction to the tutorial topic.  
-Mention prerequisites if needed, e.g.:  
-
-> **Prerequisite:** Access to the SPARC portal and a GitHub repository for your plugin.
+We currently have both the Vue-based frontend and the backend of our chatbot plugin on GitHub repos — [chatbot client](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-client) and [chatbot API server](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-api). Now, we want to host this plugin in the SPARC Portal, and we have two options for deploying the plugin: easy mode and advance mode.
 
 ---
 
-## 2. Step 1 Title
+## 2. Easy mode
 
-Describe the first step in detail.  
+**deploy plugin to connect existing server api**
 
-Example structure for steps:  
-1. Instruction or action item  
-2. Screenshot or example (optional)  
-3. Expected result or next step
+Find the plugin fontend Github code - [chatbot client](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-client)
+
+Then follow the [Tutorial 1: Registering your plugin on the cloud-based development environment](./tutorial-1.md#2-registering-your-plugin-on-the-sparc-plugins-cloud-based-development-environment) sections to host the plugin. 
 
 ---
 
-## 3. Step 2 Title
+## 3. Advance mode
 
-Explain the next step.  
-- Use **bulleted lists** for actions  
-- Add code blocks where relevant:
+**deploy plugin to connect own server api**
 
-```bash
-npm install
-npm run build
-```
+For advance user's, you may want to host the server api locally or somewhere.
 
+**Requirements:**
+- docker
+- python 3.10+
+
+**Steps**
+
+- Steps for deploy plugin api server:
+    - Step 1: clone the [chatbot API server](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-api) to your server or PC.
+    - Step 2: if you meet environment issue, please ask administrator for the `.env` file.
+    - Step 3: open the `chatbot API server` folder in your terminal, and run below commands:
+
+        ```bash
+        docker compose up -d
+        ```
+    - Copy your server api endpoint url to somewhere.
+- Steps for deploy plugin frontend:
+    - Step 1: clone the [chatbot client](https://github.com/SPARC-FAIR-Codeathon/2025-team-D-sparc-plugins-chatbot-client) to your server or PC.
+    - Step 2: find and copy the `api server endpoint url`, then go to the `chatbot client` folder `src/components/ChatInterface.vue line 200`, replace the server url to your one.
+    - Step 3: you can do wantever developments for this client. 
+    - Step 4: after you modify it, you can commit and push to your Github repo.
+    - Step 5: copy your repo url then follow the [Tutorial 1: Registering your plugin on the cloud-based development environment](./tutorial-1.md#2-registering-your-plugin-on-the-sparc-plugins-cloud-based-development-environment) sections to host the plugin in SPARC Portal. 
+    
 ---
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
