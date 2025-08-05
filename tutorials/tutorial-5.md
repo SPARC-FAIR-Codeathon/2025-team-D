@@ -22,8 +22,9 @@ By the end of this tutorial, you will be able to:
 2. [Setting up a local development environment](#2-setting-up-a-local-development-environment)
 3. [Setting up the plugin's backend server](#3-setting-up-the-plugin's-backend-server)  
 4. [Registering a local plugin](#4-registering-a-local-plugin)
-5. [Loading data from a locally stored SDS dataset](#5-loading-data-from-a locally-stored-sds-dataset)
-6. [Running simulation](#6-running-simulation)
+5. [Run the backend locally](#5-run-the-backend-locally)
+6. [Loading data from a locally stored SDS dataset](#5-loading-data-from-a locally-stored-sds-dataset)
+7. [Running simulation](#6-running-simulation)
 
 ---
 
@@ -68,20 +69,33 @@ git clone https://github.com/Copper3D-brids/plugin-ai-annotator-frontend.git
 
 ## 4. Loading data from a locally stored SDS dataset
 
-   1. download an example dataset from here
-   2. copy into ...
+   1. download an example SPARC dataset from [Google drive](https://drive.google.com/drive/folders/1tjeizlQP-hDp_0ODlhZhL1w9M1fD_K0E), Here are two dataset `duck` is a duck SPARC dataset, `sparc` is SPARC exsiting rat dataset
+   2. Git clone the example plugin server [Plugin AI annotator backend](https://github.com/Copper3D-brids/plugin-ai-annotator-backend) to your local folder.
+   3. Once you download the dataset, unzip it, then copy all contents(folders and files) and paste into `backend/data/duck` folder.
+
+## 5. Run the backend locally
+   1. Follow by these commands:
+      ```sh
+      cd plugin-ai-annotator-backend
+      docker compose up -d
+      ```
+   2. Once the backend running, copy the endpoint url, it shuold be `http://localhost:8082`
 
 ## 5. Registering a local plugin
 
-1. Back to the portal plugin page at [http://localhost:3000/register-plugins](http://localhost:3000/register-plugins)
-2. click on "Register a new plugin"
-3. Fill in the form and use local path for Source URL. See below:
+1. Copy the server endpoint url and paste into frontend https.ts file. [More details please see here](https://github.com/Copper3D-brids/plugin-ai-annotator-frontend?tab=readme-ov-file#deploy-locally).
+2. Back to the portal plugin page at [http://localhost:3000/register-plugins](http://localhost:3000/register-plugins)
+3. click on "Register a new plugin"
+4. Fill in the form and use local path for Source URL. See below:
    - Name: `AI Annotator - YOUR NAME`
    - Source URL: `./plugins/plugin-ai-annotator-frontend`
 
 
 ## 6. Running simulation
+Now you can interact with the AI annotation plugin which accesses a SDS dataset from a local bankend server.
+<img width="1155" height="862" alt="image" src="https://github.com/user-attachments/assets/48f13b46-c22b-4ee9-a390-8d9a91eb7805" />
 
 
 [← Back to Tutorials List](../README.md#tutorials-for-creating-new-plugins)
+
 
