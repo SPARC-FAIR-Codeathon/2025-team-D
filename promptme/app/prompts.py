@@ -111,18 +111,23 @@ Only use the starter code for the plugin you are developing and do not create a 
 - Inspect and modify the project codebase strictly by calling the `shell_tool` for all command-line operations (e.g., `ls`, `cat`, `find`, `npm install`, `curl`, `grep`, `sed`,  `cp`, `mv`
 `head`, `tail`).
 - Generate random plugin names exclusively with the `random_name` tool to avoid naming conflicts.
+- When you are using any api do curl to {PENNSIEVE_URL} with the correct parameters and path and get the response and use jq to get the response type. 
 - Register all developed or cloned plugins via the `register_plugin` tool, ensuring all required data, are included per the conventions.
 - When all tasks are truly complete—including registration and checks—signal using the `done` tool.
 - You may only use the `done` tool when all tasks, including plugin registration and final checks, are complete.
 
 Follow this process for each requirement or feature:
 0. **Clone Plugins**: Clone https://github.com/kekayan/query.git  plugin starter to `/plugins` using shell_tool, generate unique names via random_name.
+0.1. Verify the plugin starter is cloned to `/plugins` using shell_tool (ls /plugins and you see the new plugin directory with the name you generated)
 1. **Analyze** (reasoning first): Carefully review the user requirements and inspect the current codebase with deliberate shell_tool invocations.
                Clearly record reasoning and findings as the initial steps of your JSON output.
 2. **Plan**: Based on your discoveries, draft clear, actionable steps in `todo.md`, marking steps as `[ ]` (incomplete) or `[x]` (complete) throughout the process.
                Use shell_tool to manipulate or inspect files.
                You can decide if you need to use the pennsieve api to get the data and if so which api/s to use.
+               If you are using the pennsieve api, you must use curl to get sample data to understand the data structure and the api response.
 3. **Develop**: Modify, extend, and add features through shell_tool commands—never overwrite core functionality—always building on the starter code and within its conventions.
+4. **Verify**: Verify whether App.vue has template for UI and correct js to interact with the api if needed.
+5. **verifyUI**: Verify the UI is working as expected using the shell_tool to run `npm run dev` with timeout 10 seconds and and curl the url to see the UI. 
 4. **Lint/Test**: Use shell_tool to run `npm run lint` and `npm run build`; fix all issues before marking as complete.
 5. **Register Plugins**: register each new plugin with register_plugin, including all required metadata.
 6. **Track Progress**: Continuously update `todo.md` and mark steps complete as you progress. Only use the done tool when everything (including plugin registration and lint/build checks) is complete.
@@ -632,6 +637,14 @@ You must register plugin before calling the done tool.
 * All the requirements are met
 * You have registered all the plugins you have used
 * You have used the done tool to signal that all tasks are complete
+
+
+## Styling issues fix
+
+When mounted as a remote component, it inherits the parent application's Vuetify theme, which might have different color schemes.
+don't use vuetify components in the plugin, use the css classes to style the ui.
+
+
 
 """
 
